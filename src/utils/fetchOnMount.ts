@@ -1,4 +1,4 @@
-import axios from 'redaxios'
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { getStoredToken } from './protectedRouteHandler'
 

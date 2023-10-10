@@ -20,6 +20,7 @@
     "@tailwindcss/line-clamp": "^0.4.2",
     "@vercel/analytics": "^1.0.1",
     "awesome-debounce-promise": "^2.1.0",
+    "axios": "^1.5.1",
     "cors": "^2.8.5",
     "crypto-js": "^4.1.1",
     "csstype": "^3.1.1",

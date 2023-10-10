@@ -3,7 +3,7 @@ import type { OdFileObject } from '../../types'
 import { FC, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
-import axios from 'redaxios'
+import axios from 'axios'
 import toast from 'react-hot-toast'
 import Plyr from 'plyr-react'
 import { useAsync } from 'react-async-hook'

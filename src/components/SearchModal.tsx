@@ -1,4 +1,4 @@
-import axios from 'redaxios'
+import axios from 'axios'
 import useSWR, { SWRResponse } from 'swr'
 import { Dispatch, Fragment, SetStateAction, useState } from 'react'
 import AwesomeDebouncePromise from 'awesome-debounce-promise'
