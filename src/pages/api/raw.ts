@@ -1,11 +1,15 @@
-import { posix as pathPosix } from 'path'
+import { posix as pathPosix } from 'path-browserify'
 
 import type { NextApiRequest, NextApiResponse } from 'next'
-import axios, { AxiosResponseHeaders } from 'axios'
+import axios from '../../utils/axios'
+import { AxiosResponseHeaders } from 'axios'
 import Cors from 'cors'
 
 import { driveApi, cacheControlHeader } from '../../../config/api.config'
 import { encodePath, getAccessToken, checkAuthRoute } from '.'
+import { NextRequest } from 'next/server'
+
+export const runtime = 'edge';
 
 // CORS middleware for raw links: https://nextjs.org/docs/api-routes/api-middlewares
 export function runCorsMiddleware(req: NextApiRequest, res: NextApiResponse) {
@@ -21,24 +25,21 @@ export function runCorsMiddleware(req: NextApiRequest, res: NextApiResponse) {
   })
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextRequest): Promise<Response> {
   const accessToken = await getAccessToken()
   if (!accessToken) {
-    res.status(403).json({ error: 'No access token.' })
-    return
+    return new Response(JSON.stringify({ error: 'No access token.' }), { status: 403 })
   }
 
-  const { path = '/', odpt = '', proxy = false } = req.query
+  const { path = '/', odpt = '', proxy = false } = Object.fromEntries(req.nextUrl.searchParams)
 
   // Sometimes the path parameter is defaulted to '[...path]' which we need to handle
   if (path === '[...path]') {
-    res.status(400).json({ error: 'No path specified.' })
-    return
+    return new Response(JSON.stringify({ error: 'No path specified.' }), { status: 400 })
   }
   // If the path is not a valid path, return 400
   if (typeof path !== 'string') {
-    res.status(400).json({ error: 'Path query invalid.' })
-    return
+    return new Response(JSON.stringify({ error: 'Path query invalid.' }), { status: 400 })
   }
   const cleanPath = pathPosix.resolve('/', pathPosix.normalize(path))
 
@@ -48,16 +49,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const { code, message } = await checkAuthRoute(cleanPath, accessToken, odTokenHeader)
   // Status code other than 200 means user has not authenticated yet
   if (code !== 200) {
-    res.status(code).json({ error: message })
-    return
+    return new Response(JSON.stringify({ error: message }), { status: code })
   }
   // If message is empty, then the path is not protected.
   // Conversely, protected routes are not allowed to serve from cache.
-  if (message !== '') {
-    res.setHeader('Cache-Control', 'no-cache')
-  }
+  // TODO
+  // if (message !== '') {
+  //   res.setHeader('Cache-Control', 'no-cache')
+  // }
 
-  await runCorsMiddleware(req, res)
+  // TODO
+  // await runCorsMiddleware(req, res)
   try {
     // Handle response from OneDrive API
     const requestUrl = `${driveApi}/root${encodePath(cleanPath)}`
@@ -77,17 +79,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         })
         headers['Cache-Control'] = cacheControlHeader
         // Send data stream as response
-        res.writeHead(200, headers as AxiosResponseHeaders)
-        stream.pipe(res)
+        // TODO
+        // res.writeHead(200, headers as AxiosResponseHeaders)
+        // stream.pipe(res)
+        return new Response()
       } else {
-        res.redirect(data['@microsoft.graph.downloadUrl'])
+        return Response.redirect(data['@microsoft.graph.downloadUrl'])
       }
     } else {
-      res.status(404).json({ error: 'No download url found.' })
+      return new Response(JSON.stringify({ error: 'No download url found.' }), { status: 404 })
     }
-    return
   } catch (error: any) {
-    res.status(error?.response?.status ?? 500).json({ error: error?.response?.data ?? 'Internal server error.' })
-    return
+    return new Response(JSON.stringify({ error: error?.response?.data ?? 'Internal server error.' }), { status: error?.response?.status ?? 500 })
   }
 }

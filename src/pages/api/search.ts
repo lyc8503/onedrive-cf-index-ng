@@ -1,9 +1,12 @@
-import axios from 'axios'
+import axios from '../../utils/axios'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { encodePath, getAccessToken } from '.'
 import apiConfig from '../../../config/api.config'
 import siteConfig from '../../../config/site.config'
+import { NextRequest, NextResponse } from 'next/server'
+
+export const runtime = 'edge';
 
 /**
  * Sanitize the search query
@@ -25,16 +28,17 @@ function sanitiseQuery(query: string): string {
   return encodeURIComponent(sanitisedQuery)
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextRequest): Promise<Response> {
   // Get access token from storage
   const accessToken = await getAccessToken()
 
   // Query parameter from request
-  const { q: searchQuery = '' } = req.query
+  const { q: searchQuery = '' } = Object.fromEntries(req.nextUrl.searchParams)
 
   // Set edge function caching for faster load times, check docs:
   // https://vercel.com/docs/concepts/functions/edge-caching
-  res.setHeader('Cache-Control', apiConfig.cacheControlHeader)
+  // TODO
+  // res.setHeader('Cache-Control', apiConfig.cacheControlHeader)
 
   if (typeof searchQuery === 'string') {
     // Construct Microsoft Graph Search API URL, and perform search only under the base directory
@@ -51,12 +55,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           top: siteConfig.maxItems,
         },
       })
-      res.status(200).json(data.value)
+      return NextResponse.json(data.value)
     } catch (error: any) {
-      res.status(error?.response?.status ?? 500).json({ error: error?.response?.data ?? 'Internal server error.' })
+      return new Response(JSON.stringify({ error: error?.response?.data ?? 'Internal server error.' }), { status: error?.response?.status ?? 500 })
     }
   } else {
-    res.status(200).json([])
+    return NextResponse.json([])
   }
-  return
 }

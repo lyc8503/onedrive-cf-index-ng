@@ -4,7 +4,6 @@ import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import rehypeRaw from 'rehype-raw'
-import { useTranslation } from 'next-i18next'
 import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { tomorrowNight } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 
@@ -25,7 +24,6 @@ const MarkdownPreview: FC<{
   const parentPath = standalone ? path.substring(0, path.lastIndexOf('/')) : path
 
   const { response: content, error, validating } = useFileContent(`/api/raw/?path=${parentPath}/${file.name}`, path)
-  const { t } = useTranslation()
 
   // Check if the image is relative path instead of a absolute url
   const isUrlAbsolute = (url: string | string[]) => url.indexOf('://') > 0 || url.indexOf('//') === 0
@@ -98,7 +96,7 @@ const MarkdownPreview: FC<{
     return (
       <>
         <PreviewContainer>
-          <Loading loadingText={t('Loading file content...')} />
+          <Loading loadingText={'Loading file content...'} />
         </PreviewContainer>
         {standalone && (
           <DownloadBtnContainer>

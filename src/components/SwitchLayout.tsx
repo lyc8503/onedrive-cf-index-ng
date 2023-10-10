@@ -2,7 +2,6 @@ import { Fragment } from 'react'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Listbox, Transition } from '@headlessui/react'
-import { useTranslation } from 'next-i18next'
 
 import useLocalStorage from '../utils/useLocalStorage'
 
@@ -14,8 +13,6 @@ export const layouts: Array<{ id: number; name: 'Grid' | 'List'; icon: IconProp 
 const SwitchLayout = () => {
   const [preferredLayout, setPreferredLayout] = useLocalStorage('preferredLayout', layouts[0])
 
-  const { t } = useTranslation()
-
   return (
     <div className="relative w-24 flex-shrink-0 text-sm text-gray-600 dark:text-gray-300 md:w-28">
       <Listbox value={preferredLayout} onChange={setPreferredLayout}>
@@ -24,9 +21,7 @@ const SwitchLayout = () => {
             <FontAwesomeIcon className="mr-2 h-3 w-3" icon={preferredLayout.icon} />
             <span>
               {
-                // t('Grid')
-                // t('List')
-                t(preferredLayout.name)
+                preferredLayout.name
               }
             </span>
           </span>
@@ -57,9 +52,7 @@ const SwitchLayout = () => {
                 <FontAwesomeIcon className="mr-2 h-3 w-3" icon={layout.icon} />
                 <span className={layout.name === preferredLayout.name ? 'font-medium' : 'font-normal'}>
                   {
-                    // t('Grid')
-                    // t('List')
-                    t(layout.name)
+                    layout.name
                   }
                 </span>
                 {layout.name === preferredLayout.name && (

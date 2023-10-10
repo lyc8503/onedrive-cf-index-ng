@@ -2,7 +2,6 @@ import type { OdFileObject } from '../../types'
 
 import { FC, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
 
 import axios from 'axios'
 import toast from 'react-hot-toast'
@@ -80,7 +79,6 @@ const VideoPreview: FC<{ file: OdFileObject }> = ({ file }) => {
   const clipboard = useClipboard()
 
   const [menuOpen, setMenuOpen] = useState(false)
-  const { t } = useTranslation()
 
   // OneDrive generates thumbnails for its video files, we pick the thumbnail with the highest resolution
   const thumbnail = `/api/thumbnail/?path=${asPath}&size=large${hashedToken ? `&odpt=${hashedToken}` : ''}`
@@ -110,7 +108,7 @@ const VideoPreview: FC<{ file: OdFileObject }> = ({ file }) => {
         {error ? (
           <FourOhFour errorMsg={error.message} />
         ) : loading && isFlv ? (
-          <Loading loadingText={t('Loading FLV extension...')} />
+          <Loading loadingText={'Loading FLV extension...'} />
         ) : (
           <VideoPlayer
             videoName={file.name}
@@ -130,22 +128,22 @@ const VideoPreview: FC<{ file: OdFileObject }> = ({ file }) => {
           <DownloadButton
             onClickCallback={() => window.open(videoUrl)}
             btnColor="blue"
-            btnText={t('Download')}
+            btnText={'Download'}
             btnIcon="file-download"
           />
           <DownloadButton
             onClickCallback={() => {
               clipboard.copy(`${getBaseUrl()}/api/raw/?path=${asPath}${hashedToken ? `&odpt=${hashedToken}` : ''}`)
-              toast.success(t('Copied direct link to clipboard.'))
+              toast.success('Copied direct link to clipboard.')
             }}
             btnColor="pink"
-            btnText={t('Copy direct link')}
+            btnText={'Copy direct link'}
             btnIcon="copy"
           />
           <DownloadButton
             onClickCallback={() => setMenuOpen(true)}
             btnColor="teal"
-            btnText={t('Customise link')}
+            btnText={'Customise link'}
             btnIcon="pen"
           />
 

@@ -4,7 +4,6 @@ import { Dispatch, Fragment, SetStateAction, useState } from 'react'
 import AwesomeDebouncePromise from 'awesome-debounce-promise'
 import { useAsync } from 'react-async-hook'
 import useConstant from 'use-constant'
-import { useTranslation } from 'next-i18next'
 
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -118,8 +117,6 @@ function SearchResultItemLoadRemote({ result }: { result: OdSearchResult[number]
     fetcher
   )
 
-  const { t } = useTranslation()
-
   if (error) {
     return (
       <SearchResultItemTemplate
@@ -135,7 +132,7 @@ function SearchResultItemLoadRemote({ result }: { result: OdSearchResult[number]
       <SearchResultItemTemplate
         driveItem={result}
         driveItemPath={''}
-        itemDescription={t('Loading ...')}
+        itemDescription={'Loading ...'}
         disabled={true}
       />
     )
@@ -179,8 +176,6 @@ export default function SearchModal({
 }) {
   const { query, setQuery, results } = useDriveItemSearch()
 
-  const { t } = useTranslation()
-
   const closeSearchBox = () => {
     setSearchOpen(false)
     setQuery('')
@@ -221,7 +216,7 @@ export default function SearchModal({
                   type="text"
                   id="search-box"
                   className="w-full bg-transparent focus:outline-none focus-visible:outline-none"
-                  placeholder={t('Search ...')}
+                  placeholder={'Search ...'}
                   value={query}
                   onChange={e => setQuery(e.target.value)}
                 />
@@ -234,18 +229,18 @@ export default function SearchModal({
                 {results.loading && (
                   <div className="px-4 py-12 text-center text-sm font-medium">
                     <LoadingIcon className="svg-inline--fa mr-2 inline-block h-4 w-4 animate-spin" />
-                    <span>{t('Loading ...')}</span>
+                    <span>{'Loading ...'}</span>
                   </div>
                 )}
                 {results.error && (
                   <div className="px-4 py-12 text-center text-sm font-medium">
-                    {t('Error: {{message}}', { message: results.error.message })}
+                    {`Error: ${results.error.message}`}
                   </div>
                 )}
                 {results.result && (
                   <>
                     {results.result.length === 0 ? (
-                      <div className="px-4 py-12 text-center text-sm font-medium">{t('Nothing here.')}</div>
+                      <div className="px-4 py-12 text-center text-sm font-medium">{'Nothing here.'}</div>
                     ) : (
                       results.result.map(result => <SearchResultItem key={result.id} result={result} />)
                     )}

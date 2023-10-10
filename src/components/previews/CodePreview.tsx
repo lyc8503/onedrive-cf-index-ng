@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import { useTranslation } from 'next-i18next'
 import useSystemTheme from 'react-use-system-theme'
 import { useRouter } from 'next/router'
 
@@ -18,7 +17,6 @@ const CodePreview: FC<{ file: any }> = ({ file }) => {
   const { response: content, error, validating } = useFileContent(`/api/raw/?path=${asPath}`, asPath)
 
   const theme = useSystemTheme('dark')
-  const { t } = useTranslation()
 
   if (error) {
     return (
@@ -31,7 +29,7 @@ const CodePreview: FC<{ file: any }> = ({ file }) => {
     return (
       <>
         <PreviewContainer>
-          <Loading loadingText={t('Loading file content...')} />
+          <Loading loadingText={'Loading file content...'} />
         </PreviewContainer>
         <DownloadBtnContainer>
           <DownloadButtonGroup />

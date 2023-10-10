@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from './axios'
 import CryptoJS from 'crypto-js'
 
 import apiConfig from '../../config/api.config'

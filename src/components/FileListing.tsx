@@ -7,7 +7,6 @@ import emojiRegex from 'emoji-regex'
 
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
 
 import useLocalStorage from '../utils/useLocalStorage'
 import { getPreviewType, preview } from '../utils/getPreviewType'
@@ -158,8 +157,6 @@ const FileListing: FC<{ query?: ParsedUrlQuery }> = ({ query }) => {
   const hashedToken = getStoredToken(router.asPath)
   const [layout, _] = useLocalStorage('preferredLayout', layouts[0])
 
-  const { t } = useTranslation()
-
   const path = queryToPath(query)
 
   const { data, error, size, setSize } = useProtectedSWRInfinite(path)
@@ -180,7 +177,7 @@ const FileListing: FC<{ query?: ParsedUrlQuery }> = ({ query }) => {
   if (!data) {
     return (
       <PreviewContainer>
-        <Loading loadingText={t('Loading ...')} />
+        <Loading loadingText={'Loading ...'} />
       </PreviewContainer>
     )
   }
@@ -257,13 +254,13 @@ const FileListing: FC<{ query?: ParsedUrlQuery }> = ({ query }) => {
         downloadMultipleFiles({ toastId, router, files, folder })
           .then(() => {
             setTotalGenerating(false)
-            toast.success(t('Finished downloading selected files.'), {
+            toast.success('Finished downloading selected files.', {
               id: toastId,
             })
           })
           .catch(() => {
             setTotalGenerating(false)
-            toast.error(t('Failed to download selected files.'), { id: toastId })
+            toast.error('Failed to download selected files.', { id: toastId })
           })
       }
     }
@@ -285,11 +282,7 @@ const FileListing: FC<{ query?: ParsedUrlQuery }> = ({ query }) => {
         for await (const { meta: c, path: p, isFolder, error } of traverseFolder(path)) {
           if (error) {
             toast.error(
-              t('Failed to download folder {{path}}: {{status}} {{message}} Skipped it to continue.', {
-                path: p,
-                status: error.status,
-                message: error.message,
-              })
+              `Failed to download folder ${p}: ${error.status} ${error.message} Skipped it to continue.`
             )
             continue
           }
@@ -315,11 +308,11 @@ const FileListing: FC<{ query?: ParsedUrlQuery }> = ({ query }) => {
       })
         .then(() => {
           setFolderGenerating({ ...folderGenerating, [id]: false })
-          toast.success(t('Finished downloading folder.'), { id: toastId })
+          toast.success('Finished downloading folder.', { id: toastId })
         })
         .catch(() => {
           setFolderGenerating({ ...folderGenerating, [id]: false })
-          toast.error(t('Failed to download folder.'), { id: toastId })
+          toast.error('Failed to download folder.', { id: toastId })
         })
     }
 
@@ -348,13 +341,10 @@ const FileListing: FC<{ query?: ParsedUrlQuery }> = ({ query }) => {
         {!onlyOnePage && (
           <div className="rounded-b bg-white dark:bg-gray-900 dark:text-gray-100">
             <div className="border-b border-gray-200 p-3 text-center font-mono text-sm text-gray-400 dark:border-gray-700">
-              {t('- showing {{count}} page(s) ', {
-                count: size,
-                totalFileNum: isLoadingMore ? '...' : folderChildren.length,
-              }) +
+              {`- showing ${size} page(s) ` +
                 (isLoadingMore
-                  ? t('of {{count}} file(s) -', { count: folderChildren.length, context: 'loading' })
-                  : t('of {{count}} file(s) -', { count: folderChildren.length, context: 'loaded' }))}
+                  ? `of ${folderChildren.length} file(s) -`
+                  : `of ${folderChildren.length} file(s) -`)}
             </div>
             <button
               className={`flex w-full items-center justify-center space-x-2 p-3 disabled:cursor-not-allowed ${
@@ -366,13 +356,13 @@ const FileListing: FC<{ query?: ParsedUrlQuery }> = ({ query }) => {
               {isLoadingMore ? (
                 <>
                   <LoadingIcon className="inline-block h-4 w-4 animate-spin" />
-                  <span>{t('Loading ...')}</span>{' '}
+                  <span>{'Loading ...'}</span>{' '}
                 </>
               ) : isReachingEnd ? (
-                <span>{t('No more files')}</span>
+                <span>{'No more files'}</span>
               ) : (
                 <>
-                  <span>{t('Load more')}</span>
+                  <span>{'Load more'}</span>
                   <FontAwesomeIcon icon="chevron-circle-down" />
                 </>
               )}
@@ -435,7 +425,7 @@ const FileListing: FC<{ query?: ParsedUrlQuery }> = ({ query }) => {
 
   return (
     <PreviewContainer>
-      <FourOhFour errorMsg={t('Cannot preview {{path}}', { path })} />
+      <FourOhFour errorMsg={`Cannot preview ${path}`} />
     </PreviewContainer>
   )
 }

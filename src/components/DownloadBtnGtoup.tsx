@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import toast from 'react-hot-toast'
 import { useClipboard } from 'use-clipboard-copy'
-import { useTranslation } from 'next-i18next'
 
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -69,8 +68,6 @@ const DownloadButtonGroup = () => {
   const clipboard = useClipboard()
   const [menuOpen, setMenuOpen] = useState(false)
 
-  const { t } = useTranslation()
-
   return (
     <>
       <CustomEmbedLinkMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} path={asPath} />
@@ -78,24 +75,24 @@ const DownloadButtonGroup = () => {
         <DownloadButton
           onClickCallback={() => window.open(`/api/raw/?path=${asPath}${hashedToken ? `&odpt=${hashedToken}` : ''}`)}
           btnColor="blue"
-          btnText={t('Download')}
+          btnText={'Download'}
           btnIcon="file-download"
-          btnTitle={t('Download the file directly through OneDrive')}
+          btnTitle={'Download the file directly through OneDrive'}
         />
         <DownloadButton
           onClickCallback={() => {
             clipboard.copy(`${getBaseUrl()}/api/raw/?path=${asPath}${hashedToken ? `&odpt=${hashedToken}` : ''}`)
-            toast.success(t('Copied direct link to clipboard.'))
+            toast.success('Copied direct link to clipboard.')
           }}
           btnColor="pink"
-          btnText={t('Copy direct link')}
+          btnText={'Copy direct link'}
           btnIcon="copy"
-          btnTitle={t('Copy the permalink to the file to the clipboard')}
+          btnTitle={'Copy the permalink to the file to the clipboard'}
         />
         <DownloadButton
           onClickCallback={() => setMenuOpen(true)}
           btnColor="teal"
-          btnText={t('Customise link')}
+          btnText={'Customise link'}
           btnIcon="pen"
         />
       </div>

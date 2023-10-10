@@ -1,6 +1,8 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
 import { default as rawFileHandler } from '../raw'
+import { NextRequest } from 'next/server';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  rawFileHandler(req, res)
+export const runtime = 'edge';
+
+export default async function handler(req: NextRequest): Promise<Response> {
+  return rawFileHandler(req)
 }
