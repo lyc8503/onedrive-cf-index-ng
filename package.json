@@ -47,6 +47,7 @@
     "react-reader": "^1.0.2",
     "react-syntax-highlighter": "^15.5.0",
     "react-use-system-theme": "^1.1.1",
+    "redaxios": "^0.5.1",
     "rehype-katex": "^6.0.2",
     "rehype-raw": "^6.0.0",
     "remark-gfm": "^3.0.1",

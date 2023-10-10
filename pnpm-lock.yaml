@@ -116,6 +116,9 @@ dependencies:
   react-use-system-theme:
     specifier: ^1.1.1
     version: 1.1.1(react@18.2.0)
+  redaxios:
+    specifier: ^0.5.1
+    version: 0.5.1
   rehype-katex:
     specifier: ^6.0.2
     version: 6.0.3
@@ -5472,6 +5475,10 @@ packages:
     engines: {node: '>=8.10.0'}
     dependencies:
       picomatch: 2.3.1
+
+  /redaxios@0.5.1:
+    resolution: {integrity: sha512-FSD2AmfdbkYwl7KDExYQlVvIrFz6Yd83pGfaGjBzM9F6rpq8g652Q4Yq5QD4c+nf4g2AgeElv1y+8ajUPiOYMg==}
+    dev: false
 
   /redis-errors@1.2.0:
     resolution: {integrity: sha1-62LSrbFeTq9GEMBK/hUpOEJQq60=}
