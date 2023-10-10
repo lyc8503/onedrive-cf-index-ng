@@ -25,11 +25,9 @@ export default function OAuthStep1() {
             <div className="mx-auto w-52">
               <Image src="/images/fabulous-fireworks.png" width={912} height={912} alt="fabulous fireworks" priority />
             </div>
-            <h3 className="mb-4 text-center text-xl font-medium">
-              {'Welcome to your new onedrive-vercel-index 🎉'}
-            </h3>
+            <h3 className="mb-4 text-center text-xl font-medium">{'Welcome to your new onedrive-vercel-index 🎉'}</h3>
 
-            <h3 className="mt-4 mb-2 text-lg font-medium">{'Step 1/3: Preparations'}</h3>
+            <h3 className="mb-2 mt-4 text-lg font-medium">{'Step 1/3: Preparations'}</h3>
 
             <p className="py-1 text-sm font-medium text-yellow-400">
               <FontAwesomeIcon icon="exclamation-triangle" className="mr-1" /> If you have not specified a REDIS_URL
@@ -52,59 +50,59 @@ export default function OAuthStep1() {
             <p className="py-1">
               Authorisation is required as no valid{' '}
               <code className="font-mono text-sm underline decoration-pink-600 decoration-wavy">access_token</code> or{' '}
-              <code className="font-mono text-sm underline decoration-green-600 decoration-wavy">refresh_token</code>{' '}
-              is present on this deployed instance. Check the following configurations before proceeding with
-              authorising onedrive-vercel-index with your own Microsoft account.
+              <code className="font-mono text-sm underline decoration-green-600 decoration-wavy">refresh_token</code> is
+              present on this deployed instance. Check the following configurations before proceeding with authorising
+              onedrive-vercel-index with your own Microsoft account.
             </p>
 
             <div className="my-4 overflow-hidden">
               <table className="min-w-full table-auto">
                 <tbody>
                   <tr className="border-y bg-white dark:border-gray-700 dark:bg-gray-900">
-                    <td className="bg-gray-50 py-1 px-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:bg-gray-800 dark:text-gray-400">
+                    <td className="bg-gray-50 px-3 py-1 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:bg-gray-800 dark:text-gray-400">
                       CLIENT_ID
                     </td>
-                    <td className="whitespace-nowrap py-1 px-3 text-gray-500 dark:text-gray-400">
+                    <td className="whitespace-nowrap px-3 py-1 text-gray-500 dark:text-gray-400">
                       <code className="font-mono text-sm">{apiConfig.clientId}</code>
                     </td>
                   </tr>
                   <tr className="border-y bg-white dark:border-gray-700 dark:bg-gray-900">
-                    <td className="bg-gray-50 py-1 px-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:bg-gray-800 dark:text-gray-400">
+                    <td className="bg-gray-50 px-3 py-1 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:bg-gray-800 dark:text-gray-400">
                       CLIENT_SECRET*
                     </td>
-                    <td className="whitespace-nowrap py-1 px-3 text-gray-500 dark:text-gray-400">
+                    <td className="whitespace-nowrap px-3 py-1 text-gray-500 dark:text-gray-400">
                       <code className="font-mono text-sm">{apiConfig.obfuscatedClientSecret}</code>
                     </td>
                   </tr>
                   <tr className="border-y bg-white dark:border-gray-700 dark:bg-gray-900">
-                    <td className="bg-gray-50 py-1 px-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:bg-gray-800 dark:text-gray-400">
+                    <td className="bg-gray-50 px-3 py-1 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:bg-gray-800 dark:text-gray-400">
                       REDIRECT_URI
                     </td>
-                    <td className="whitespace-nowrap py-1 px-3 text-gray-500 dark:text-gray-400">
+                    <td className="whitespace-nowrap px-3 py-1 text-gray-500 dark:text-gray-400">
                       <code className="font-mono text-sm">{apiConfig.redirectUri}</code>
                     </td>
                   </tr>
                   <tr className="border-y bg-white dark:border-gray-700 dark:bg-gray-900">
-                    <td className="bg-gray-50 py-1 px-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:bg-gray-800 dark:text-gray-400">
+                    <td className="bg-gray-50 px-3 py-1 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:bg-gray-800 dark:text-gray-400">
                       Auth API URL
                     </td>
-                    <td className="whitespace-nowrap py-1 px-3 text-gray-500 dark:text-gray-400">
+                    <td className="whitespace-nowrap px-3 py-1 text-gray-500 dark:text-gray-400">
                       <code className="font-mono text-sm">{apiConfig.authApi}</code>
                     </td>
                   </tr>
                   <tr className="border-y bg-white dark:border-gray-700 dark:bg-gray-900">
-                    <td className="bg-gray-50 py-1 px-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:bg-gray-800 dark:text-gray-400">
+                    <td className="bg-gray-50 px-3 py-1 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:bg-gray-800 dark:text-gray-400">
                       Drive API URL
                     </td>
-                    <td className="whitespace-nowrap py-1 px-3 text-gray-500 dark:text-gray-400">
+                    <td className="whitespace-nowrap px-3 py-1 text-gray-500 dark:text-gray-400">
                       <code className="font-mono text-sm">{apiConfig.driveApi}</code>
                     </td>
                   </tr>
                   <tr className="border-y bg-white dark:border-gray-700 dark:bg-gray-900">
-                    <td className="bg-gray-50 py-1 px-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:bg-gray-800 dark:text-gray-400">
+                    <td className="bg-gray-50 px-3 py-1 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:bg-gray-800 dark:text-gray-400">
                       API Scope
                     </td>
-                    <td className="whitespace-nowrap py-1 px-3 text-gray-500 dark:text-gray-400">
+                    <td className="whitespace-nowrap px-3 py-1 text-gray-500 dark:text-gray-400">
                       <code className="font-mono text-sm">{apiConfig.scope}</code>
                     </td>
                   </tr>

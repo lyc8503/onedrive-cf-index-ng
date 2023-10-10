@@ -1,6 +1,6 @@
 import { posix as pathPosix } from 'path-browserify'
 
-import axios from '../../utils/axios'
+import axios from 'redaxios'
 
 import apiConfig from '../../../config/api.config'
 import siteConfig from '../../../config/site.config'
@@ -10,7 +10,7 @@ import { getOdAuthTokens, storeOdAuthTokens } from '../../utils/odAuthTokenStore
 import { runCorsMiddleware } from './raw'
 import { NextRequest, NextResponse } from 'next/server'
 
-export const runtime = 'edge';
+export const runtime = 'edge'
 
 const basePath = pathPosix.resolve('/', siteConfig.baseDirectory)
 const clientSecret = revealObfuscatedToken(apiConfig.obfuscatedClientSecret)
@@ -281,6 +281,8 @@ export default async function handler(req: NextRequest): Promise<Response> {
     }
     return NextResponse.json({ file: identityData })
   } catch (error: any) {
-    return new Response(JSON.stringify({ error: error?.response?.data ?? 'Internal server error.' }), { status: error?.response?.code ?? 500 })
+    return new Response(JSON.stringify({ error: error?.response?.data ?? 'Internal server error.' }), {
+      status: error?.response?.code ?? 500,
+    })
   }
 }

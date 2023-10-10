@@ -1,10 +1,10 @@
-import axios from '../../utils/axios'
+import axios from 'redaxios'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { getAccessToken } from '.'
 import apiConfig from '../../../config/api.config'
 
-export const runtime = 'edge';
+export const runtime = 'edge'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   // Get access token from storage

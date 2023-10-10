@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'redaxios'
 import useSWRInfinite from 'swr/infinite'
 
 import type { OdAPIResponse } from '../types'

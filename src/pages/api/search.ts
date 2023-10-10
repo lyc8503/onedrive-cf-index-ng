@@ -1,4 +1,4 @@
-import axios from '../../utils/axios'
+import axios from 'redaxios'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { encodePath, getAccessToken } from '.'
@@ -6,7 +6,7 @@ import apiConfig from '../../../config/api.config'
 import siteConfig from '../../../config/site.config'
 import { NextRequest, NextResponse } from 'next/server'
 
-export const runtime = 'edge';
+export const runtime = 'edge'
 
 /**
  * Sanitize the search query
@@ -57,7 +57,9 @@ export default async function handler(req: NextRequest): Promise<Response> {
       })
       return NextResponse.json(data.value)
     } catch (error: any) {
-      return new Response(JSON.stringify({ error: error?.response?.data ?? 'Internal server error.' }), { status: error?.response?.status ?? 500 })
+      return new Response(JSON.stringify({ error: error?.response?.data ?? 'Internal server error.' }), {
+        status: error?.response?.status ?? 500,
+      })
     }
   } else {
     return NextResponse.json([])

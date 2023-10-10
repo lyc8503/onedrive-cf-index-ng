@@ -1,17 +1,10 @@
-import siteConfig from '../../config/site.config'
-
-let tempAccessToken = ''
-let tempRefreshToken = ''
-
+import { KVNamespace } from '@cloudflare/workers-types'
 
 export async function getOdAuthTokens(): Promise<{ accessToken: unknown; refreshToken: unknown }> {
-  // const accessToken = await kv.get(`${siteConfig.kvPrefix}access_token`)
-  // const refreshToken = await kv.get(`${siteConfig.kvPrefix}refresh_token`)
+  const { ONEDRIVE_CF_INDEX_KV } = process.env as unknown as { ONEDRIVE_CF_INDEX_KV: KVNamespace }
 
-  const accessToken = tempAccessToken;
-  const refreshToken = tempRefreshToken;
-
-  console.log("Token: " + accessToken + " / " + refreshToken)
+  const accessToken = ONEDRIVE_CF_INDEX_KV.get('access_token')
+  const refreshToken = ONEDRIVE_CF_INDEX_KV.get('refresh_token')
 
   return {
     accessToken,
@@ -28,9 +21,8 @@ export async function storeOdAuthTokens({
   accessTokenExpiry: number
   refreshToken: string
 }): Promise<void> {
+  const { ONEDRIVE_CF_INDEX_KV } = process.env as unknown as { ONEDRIVE_CF_INDEX_KV: KVNamespace }
 
-  tempAccessToken = accessToken;
-  tempRefreshToken = refreshToken;
-  // await kv.set(`${siteConfig.kvPrefix}access_token`, accessToken, 'EX', accessTokenExpiry)
-  // await kv.set(`${siteConfig.kvPrefix}refresh_token`, refreshToken)
+  ONEDRIVE_CF_INDEX_KV.put('access_token', accessToken, { expirationTtl: accessTokenExpiry })
+  ONEDRIVE_CF_INDEX_KV.put('refresh_token', refreshToken)
 }

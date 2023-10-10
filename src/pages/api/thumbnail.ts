@@ -2,14 +2,13 @@ import type { OdThumbnail } from '../../types'
 
 import { posix as pathPosix } from 'path'
 
-import axios from 'axios'
-import type { NextApiRequest, NextApiResponse } from 'next'
+import axios from 'redaxios'
 
 import { checkAuthRoute, encodePath, getAccessToken } from '.'
 import apiConfig from '../../../config/api.config'
 import { NextRequest } from 'next/server'
 
-export const runtime = 'edge';
+export const runtime = 'edge'
 
 export default async function handler(req: NextRequest): Promise<Response> {
   const accessToken = await getAccessToken()
@@ -70,6 +69,8 @@ export default async function handler(req: NextRequest): Promise<Response> {
       return new Response(JSON.stringify({ error: "The item doesn't have a valid thumbnail." }), { status: 400 })
     }
   } catch (error: any) {
-    return new Response(JSON.stringify({ error: error?.response?.data ?? 'Internal server error.' }), { status: error?.response?.status })
+    return new Response(JSON.stringify({ error: error?.response?.data ?? 'Internal server error.' }), {
+      status: error?.response?.status,
+    })
   }
 }

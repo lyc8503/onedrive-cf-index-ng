@@ -11,7 +11,7 @@ import Footer from '../../components/Footer'
 import { getAuthPersonInfo, requestTokenWithAuthCode, sendTokenToServer } from '../../utils/oAuthHandler'
 import { LoadingIcon } from '../../components/Loading'
 
-export const runtime = 'experimental-edge';
+export const runtime = 'experimental-edge'
 
 export default function OAuthStep3({ accessToken, expiryTime, refreshToken, error, description, errorUri }) {
   const router = useRouter()
@@ -105,18 +105,14 @@ export default function OAuthStep3({ accessToken, expiryTime, refreshToken, erro
                 priority
               />
             </div>
-            <h3 className="mb-4 text-center text-xl font-medium">
-              {'Welcome to your new onedrive-vercel-index 🎉'}
-            </h3>
+            <h3 className="mb-4 text-center text-xl font-medium">{'Welcome to your new onedrive-vercel-index 🎉'}</h3>
 
-            <h3 className="mt-4 mb-2 text-lg font-medium">{'Step 3/3: Get access and refresh tokens'}</h3>
+            <h3 className="mb-2 mt-4 text-lg font-medium">{'Step 3/3: Get access and refresh tokens'}</h3>
             {error ? (
               <div>
                 <p className="py-1 font-medium text-red-500">
                   <FontAwesomeIcon icon="exclamation-circle" className="mr-2" />
-                  <span>
-                    {`Whoops, looks like we got a problem: ${error}.`}
-                  </span>
+                  <span>{`Whoops, looks like we got a problem: ${error}.`}</span>
                 </p>
                 <p className="my-2 whitespace-pre-line rounded border border-gray-400/20 bg-gray-50 p-2 font-mono text-sm opacity-80 dark:bg-gray-800">
                   {description}
@@ -178,11 +174,11 @@ export default function OAuthStep3({ accessToken, expiryTime, refreshToken, erro
                     'revisit home and do a hard refresh.'}
                 </p>
                 <p className="py-1">
-                  {
-                    "Final step, click the button below to store these tokens persistently before they expire " + 
-                    `after ${ Math.floor(expiryTimeLeft / 60) } minutes ${ expiryTimeLeft - Math.floor(expiryTimeLeft / 60) * 60 } seconds. ` +
-                    "Don't worry, after storing them, onedrive-vercel-index will take care of token refreshes and updates after your site goes live."
-                  }
+                  {'Final step, click the button below to store these tokens persistently before they expire ' +
+                    `after ${Math.floor(expiryTimeLeft / 60)} minutes ${
+                      expiryTimeLeft - Math.floor(expiryTimeLeft / 60) * 60
+                    } seconds. ` +
+                    "Don't worry, after storing them, onedrive-vercel-index will take care of token refreshes and updates after your site goes live."}
                 </p>
 
                 <div className="mb-2 mt-6 text-right">
@@ -218,7 +214,7 @@ export async function getServerSideProps({ query }) {
     return {
       props: {
         error: 'No auth code present',
-        description: 'Where is the auth code? Did you follow step 2 you silly donut?'
+        description: 'Where is the auth code? Did you follow step 2 you silly donut?',
       },
     }
   }
@@ -231,7 +227,7 @@ export async function getServerSideProps({ query }) {
       props: {
         error: response.error,
         description: response.errorDescription,
-        errorUri: response.errorUri
+        errorUri: response.errorUri,
       },
     }
   }
@@ -243,7 +239,7 @@ export async function getServerSideProps({ query }) {
       error: null,
       expiryTime,
       accessToken,
-      refreshToken
+      refreshToken,
     },
   }
 }

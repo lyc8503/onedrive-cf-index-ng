@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'redaxios'
 import useSWR, { SWRResponse } from 'swr'
 import { Dispatch, Fragment, SetStateAction, useState } from 'react'
 import AwesomeDebouncePromise from 'awesome-debounce-promise'
@@ -129,12 +129,7 @@ function SearchResultItemLoadRemote({ result }: { result: OdSearchResult[number]
   }
   if (!data) {
     return (
-      <SearchResultItemTemplate
-        driveItem={result}
-        driveItemPath={''}
-        itemDescription={'Loading ...'}
-        disabled={true}
-      />
+      <SearchResultItemTemplate driveItem={result} driveItemPath={''} itemDescription={'Loading ...'} disabled={true} />
     )
   }
 
@@ -233,9 +228,7 @@ export default function SearchModal({
                   </div>
                 )}
                 {results.error && (
-                  <div className="px-4 py-12 text-center text-sm font-medium">
-                    {`Error: ${results.error.message}`}
-                  </div>
+                  <div className="px-4 py-12 text-center text-sm font-medium">{`Error: ${results.error.message}`}</div>
                 )}
                 {results.result && (
                   <>

@@ -1,3 +1,23 @@
+Forked onedrive-vercel-index and renamed to onedrive-cf-index-ng
+
+Changes:
+- Migrate to Web Api to adapt to edge runtime (Use `path-browserify` and `redaxios`)
+- Use KV to replace Redis
+- Remove i18n (requires `fs` which is not compatible with Cloudflare Workers)
+- pnpm update & a few packages update
+- IT WORKS on Cloudflare Pages now!
+
+TODO:
+- Cache headers and some todos left in API code
+- Remove redundant configs 
+- Polish Webui and fix small problems
+- Dockerfile for local deploy
+- More tests
+
+Below is the original README
+---
+
+
 <div align="center">
   <img src="./public/header.png" alt="onedrive-vercel-index" />
   <h3><a href="https://drive.swo.moe">onedrive-vercel-index</a></h3>

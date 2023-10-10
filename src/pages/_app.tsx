@@ -2,7 +2,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 
 import '../styles/globals.css'
 import '../styles/markdown-github.css'
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from '@vercel/analytics/react'
 
 // Require had to be used to prevent SSR failure in Next.js
 // Related discussion: https://github.com/FortAwesome/Font-Awesome/issues/19348

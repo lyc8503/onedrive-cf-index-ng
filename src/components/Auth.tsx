@@ -23,7 +23,7 @@ const Auth: FC<{ redirect: string }> = ({ redirect }) => {
 
       <p className="text-sm font-medium text-gray-500">
         {'This route (the folder itself and the files inside) is password protected. ' +
-         'If you know the password, please enter it below.'}
+          'If you know the password, please enter it below.'}
       </p>
 
       <div className="flex items-center space-x-2">

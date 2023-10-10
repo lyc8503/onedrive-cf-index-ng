@@ -1,15 +1,14 @@
 import { posix as pathPosix } from 'path-browserify'
 
 import type { NextApiRequest, NextApiResponse } from 'next'
-import axios from '../../utils/axios'
-import { AxiosResponseHeaders } from 'axios'
+import axios from 'redaxios'
 import Cors from 'cors'
 
 import { driveApi, cacheControlHeader } from '../../../config/api.config'
 import { encodePath, getAccessToken, checkAuthRoute } from '.'
 import { NextRequest } from 'next/server'
 
-export const runtime = 'edge';
+export const runtime = 'edge'
 
 // CORS middleware for raw links: https://nextjs.org/docs/api-routes/api-middlewares
 export function runCorsMiddleware(req: NextApiRequest, res: NextApiResponse) {
@@ -90,6 +89,8 @@ export default async function handler(req: NextRequest): Promise<Response> {
       return new Response(JSON.stringify({ error: 'No download url found.' }), { status: 404 })
     }
   } catch (error: any) {
-    return new Response(JSON.stringify({ error: error?.response?.data ?? 'Internal server error.' }), { status: error?.response?.status ?? 500 })
+    return new Response(JSON.stringify({ error: error?.response?.data ?? 'Internal server error.' }), {
+      status: error?.response?.status ?? 500,
+    })
   }
 }

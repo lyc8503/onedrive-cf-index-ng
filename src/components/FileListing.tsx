@@ -281,9 +281,7 @@ const FileListing: FC<{ query?: ParsedUrlQuery }> = ({ query }) => {
       const files = (async function* () {
         for await (const { meta: c, path: p, isFolder, error } of traverseFolder(path)) {
           if (error) {
-            toast.error(
-              `Failed to download folder ${p}: ${error.status} ${error.message} Skipped it to continue.`
-            )
+            toast.error(`Failed to download folder ${p}: ${error.status} ${error.message} Skipped it to continue.`)
             continue
           }
           const hashedTokenForPath = getStoredToken(p)
@@ -342,9 +340,7 @@ const FileListing: FC<{ query?: ParsedUrlQuery }> = ({ query }) => {
           <div className="rounded-b bg-white dark:bg-gray-900 dark:text-gray-100">
             <div className="border-b border-gray-200 p-3 text-center font-mono text-sm text-gray-400 dark:border-gray-700">
               {`- showing ${size} page(s) ` +
-                (isLoadingMore
-                  ? `of ${folderChildren.length} file(s) -`
-                  : `of ${folderChildren.length} file(s) -`)}
+                (isLoadingMore ? `of ${folderChildren.length} file(s) -` : `of ${folderChildren.length} file(s) -`)}
             </div>
             <button
               className={`flex w-full items-center justify-center space-x-2 p-3 disabled:cursor-not-allowed ${

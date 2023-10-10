@@ -39,11 +39,9 @@ export default function OAuthStep2() {
                 priority
               />
             </div>
-            <h3 className="mb-4 text-center text-xl font-medium">
-              {'Welcome to your new onedrive-vercel-index 🎉'}
-            </h3>
+            <h3 className="mb-4 text-center text-xl font-medium">{'Welcome to your new onedrive-vercel-index 🎉'}</h3>
 
-            <h3 className="mt-4 mb-2 text-lg font-medium">{'Step 2/3: Get authorisation code'}</h3>
+            <h3 className="mb-2 mt-4 text-lg font-medium">{'Step 2/3: Get authorisation code'}</h3>
 
             <p className="py-1 text-sm font-medium text-red-400">
               <FontAwesomeIcon icon="exclamation-circle" className="mr-1" /> If you are not the owner of this website,
@@ -56,7 +54,7 @@ export default function OAuthStep2() {
                 window.open(oAuthUrl)
               }}
             >
-              <div className="absolute top-0 right-0 p-1 opacity-60">
+              <div className="absolute right-0 top-0 p-1 opacity-60">
                 <FontAwesomeIcon icon="external-link-alt" />
               </div>
               <pre className="overflow-x-auto whitespace-pre-wrap p-2">
@@ -68,12 +66,12 @@ export default function OAuthStep2() {
               The OAuth link for getting the authorisation code has been created. Click on the link above to get the{' '}
               <b className="underline decoration-yellow-400 decoration-wavy">authorisation code</b>. Your browser will
               {/* eslint-disable-next-line react/no-unescaped-entities */}
-              open a new tab to Microsoft's account login page. After logging in and authenticating with your
-              Microsoft account, you will be redirected to a blank page on localhost. Paste{' '}
+              open a new tab to Microsoft's account login page. After logging in and authenticating with your Microsoft
+              account, you will be redirected to a blank page on localhost. Paste{' '}
               <b className="underline decoration-teal-500 decoration-wavy">the entire redirected URL</b> down below.
             </p>
 
-            <div className="my-4 mx-auto w-2/3 overflow-hidden rounded">
+            <div className="mx-auto my-4 w-2/3 overflow-hidden rounded">
               <Image src="/images/step-2-screenshot.png" width={1466} height={607} alt="step 2 screenshot" />
             </div>
 
