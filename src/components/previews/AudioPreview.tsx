@@ -94,7 +94,7 @@ const AudioPreview: FC<{ file: OdFileObject }> = ({ file }) => {
 
             <ReactAudioPlayer
               className="h-11 w-full"
-              src={`/api/raw/?path=${asPath}${hashedToken ? `&odpt=${hashedToken}` : ''}`}
+              src={`/api/raw?path=${asPath}${hashedToken ? `&odpt=${hashedToken}` : ''}`}
               ref={rapRef}
               controls
               preload="auto"

@@ -21,7 +21,6 @@
     "@vercel/analytics": "^1.0.1",
     "awesome-debounce-promise": "^2.1.0",
     "axios": "^1.5.1",
-    "cors": "^2.8.5",
     "crypto-js": "^4.1.1",
     "csstype": "^3.1.1",
     "dayjs": "^1.11.7",
@@ -53,7 +52,8 @@
     "remark-math": "^5.1.1",
     "swr": "^2.0.3",
     "use-clipboard-copy": "^0.2.0",
-    "use-constant": "^1.1.1"
+    "use-constant": "^1.1.1",
+    "wrangler": "^3.13.1"
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.6.3",

@@ -16,7 +16,7 @@ const parseDotUrl = (content: string): string | undefined => {
 const TextPreview = ({ file }) => {
   const { asPath } = useRouter()
 
-  const { response: content, error, validating } = useFileContent(`/api/raw/?path=${asPath}`, asPath)
+  const { response: content, error, validating } = useFileContent(`/api/raw?path=${asPath}`, asPath)
   if (error) {
     return (
       <PreviewContainer>

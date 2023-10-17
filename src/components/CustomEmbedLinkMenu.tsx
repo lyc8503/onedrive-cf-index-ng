@@ -102,11 +102,11 @@ export default function CustomEmbedLinkMenu({
 
                 <LinkContainer
                   title={'Default'}
-                  value={`${getBaseUrl()}/api/raw/?path=${readablePath}${hashedToken ? `&odpt=${hashedToken}` : ''}`}
+                  value={`${getBaseUrl()}/api/raw?path=${readablePath}${hashedToken ? `&odpt=${hashedToken}` : ''}`}
                 />
                 <LinkContainer
                   title={'URL encoded'}
-                  value={`${getBaseUrl()}/api/raw/?path=${path}${hashedToken ? `&odpt=${hashedToken}` : ''}`}
+                  value={`${getBaseUrl()}/api/raw?path=${path}${hashedToken ? `&odpt=${hashedToken}` : ''}`}
                 />
                 <LinkContainer
                   title={'Customised'}

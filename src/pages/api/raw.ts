@@ -1,28 +1,11 @@
 import { posix as pathPosix } from 'path-browserify'
-
-import type { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'redaxios'
-import Cors from 'cors'
 
 import { driveApi, cacheControlHeader } from '../../../config/api.config'
 import { encodePath, getAccessToken, checkAuthRoute } from '.'
 import { NextRequest } from 'next/server'
 
 export const runtime = 'edge'
-
-// CORS middleware for raw links: https://nextjs.org/docs/api-routes/api-middlewares
-export function runCorsMiddleware(req: NextApiRequest, res: NextApiResponse) {
-  const cors = Cors({ methods: ['GET', 'HEAD'] })
-  return new Promise((resolve, reject) => {
-    cors(req, res, result => {
-      if (result instanceof Error) {
-        return reject(result)
-      }
-
-      return resolve(result)
-    })
-  })
-}
 
 export default async function handler(req: NextRequest): Promise<Response> {
   const accessToken = await getAccessToken()
@@ -50,15 +33,19 @@ export default async function handler(req: NextRequest): Promise<Response> {
   if (code !== 200) {
     return new Response(JSON.stringify({ error: message }), { status: code })
   }
+
+  let headers = {
+    'Cache-Control': cacheControlHeader,
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, OPTIONS'
+  }
+
   // If message is empty, then the path is not protected.
   // Conversely, protected routes are not allowed to serve from cache.
-  // TODO
-  // if (message !== '') {
-  //   res.setHeader('Cache-Control', 'no-cache')
-  // }
+  if (message !== '') {
+    headers['Cache-Control'] = 'no-cache'
+  }
 
-  // TODO
-  // await runCorsMiddleware(req, res)
   try {
     // Handle response from OneDrive API
     const requestUrl = `${driveApi}/root${encodePath(cleanPath)}`
@@ -83,14 +70,16 @@ export default async function handler(req: NextRequest): Promise<Response> {
         // stream.pipe(res)
         return new Response()
       } else {
-        return Response.redirect(data['@microsoft.graph.downloadUrl'])
+        headers['Location'] = data['@microsoft.graph.downloadUrl'] as string
+        return new Response(null, { status: 302, headers: headers})
       }
     } else {
-      return new Response(JSON.stringify({ error: 'No download url found.' }), { status: 404 })
+      return new Response(JSON.stringify({ error: 'No download url found.' }), { status: 404, headers: headers })
     }
   } catch (error: any) {
     return new Response(JSON.stringify({ error: error?.response?.data ?? 'Internal server error.' }), {
       status: error?.response?.status ?? 500,
+      headers: headers
     })
   }
 }
