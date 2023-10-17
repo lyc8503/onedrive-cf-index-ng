@@ -32,8 +32,6 @@ Showcase, share, preview, and download files inside *your* OneDrive with onedriv
 
 🚀 Quick start: [Getting started](https://github.com/lyc8503/onedrive-cf-index-ng/wiki/Getting-Started).
 
-## Discussion
-
 *If you happen to like this project, please give it a star!* :3
 
 ## Demo
@@ -115,9 +113,9 @@ Live demo at [lyc8503's Fileshare](https://pan.lyc8503.site).
 
 ## Documentation
 
-Documentation is hosted at [ovi.swo.moe](https://ovi.swo.moe/).
+Documentation is hosted at [GitHub Wiki](https://github.com/lyc8503/onedrive-cf-index-ng/wiki).
 
-- [How can I get started and deploy?](https://ovi.swo.moe/docs/getting-started)
+- [How can I get started and deploy?](https://github.com/lyc8503/onedrive-cf-index-ng/wiki/Getting-Started)
 - [How can I configure ... ?](https://ovi.swo.moe/docs/custom-configs)
 - Where is feature ... ?
   - [Docs - Password protected folders](https://ovi.swo.moe/docs/features/protected-folders)
@@ -126,9 +124,9 @@ Documentation is hosted at [ovi.swo.moe](https://ovi.swo.moe/).
   - [Docs - Search for files and folders](https://ovi.swo.moe/docs/features/search-for-files-and-folders)
   - [Docs - Load video subtitles](https://ovi.swo.moe/docs/features/load-video-subtitles)
 - [I deployed this before, how can I upgrade to the latest version?](https://ovi.swo.moe/docs/migration/updating-to-latest-version)
-- [I was here before 2022, how can I migrate to the new version?](https://ovi.swo.moe/docs/migration/if-you-deployed-before-2022)
-- [I got a problem during deployment ...](https://ovi.swo.moe/docs/faqs/error-on-deployment)
-- I didn't find a solution / My problem is unique? [Find help in discussion forum](https://github.com/spencerwooo/onedrive-vercel-index/discussions).
+- I didn't find a solution / My problem is unique?
+
+  **Please open an issue for help, before that make sure that you have searched for existing/solved issues.**
 
 ## Server-*less* (free)?
 
@@ -138,15 +136,15 @@ Yes! Completely free with no backend server what-so-ever.
 
 [MIT](LICENSE)
 
-<div align="center">
-  <img src="./public/footer.png" />
-  <em>made with ❤️ by <a href="https://www.lyc8503.site">lyc8503</a> & <a href="https://spencerwoo.com">spencer woo</a></em>
-</div>
-
 ## Some TODOs
 - Documentation
 - Local/Docker deployment support
 - Some TODOs left in the code
 - More tests
+
+<div align="center">
+  <img src="./public/footer.png" />
+  <em>made with ❤️ by <a href="https://www.lyc8503.site">lyc8503</a> & <a href="https://spencerwoo.com">spencer woo</a></em>
+</div>
 
 
