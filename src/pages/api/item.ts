@@ -1,25 +1,22 @@
 import axios from 'redaxios'
-import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { getAccessToken } from '.'
 import apiConfig from '../../../config/api.config'
+import { NextRequest, NextResponse } from 'next/server'
 
 export const runtime = 'edge'
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextRequest): Promise<Response> {
   // Get access token from storage
   const accessToken = await getAccessToken()
 
   // Get item details (specifically, its path) by its unique ID in OneDrive
-  const { id = '' } = req.query
+  const { id = '' } = Object.fromEntries(req.nextUrl.searchParams)
 
-  // Set edge function caching for faster load times, check docs:
-  // https://vercel.com/docs/concepts/functions/edge-caching
-  res.setHeader('Cache-Control', apiConfig.cacheControlHeader)
+  // TODO: Set edge function caching for faster load times
 
   if (typeof id === 'string') {
     const itemApi = `${apiConfig.driveApi}/items/${id}`
-
     try {
       const { data } = await axios.get(itemApi, {
         headers: { Authorization: `Bearer ${accessToken}` },
@@ -27,12 +24,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           select: 'id,name,parentReference',
         },
       })
-      res.status(200).json(data)
+      return NextResponse.json(data)
     } catch (error: any) {
-      res.status(error?.response?.status ?? 500).json({ error: error?.response?.data ?? 'Internal server error.' })
+      return new Response(JSON.stringify({ error: error?.response?.data ?? 'Internal server error.' }), { status: error?.response?.status ?? 500 })
     }
   } else {
-    res.status(400).json({ error: 'Invalid driveItem ID.' })
+    return new Response(JSON.stringify({ error: 'Invalid driveItem ID.' }), { status: 400 })
   }
-  return
 }

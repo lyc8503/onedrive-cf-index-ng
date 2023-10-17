@@ -20,9 +20,7 @@ export default async function handler(req: NextRequest): Promise<Response> {
   // Get item thumbnails by its path since we will later check if it is protected
   const { path = '', size = 'medium', odpt = '' } = Object.fromEntries(req.nextUrl.searchParams)
 
-  // Set edge function caching for faster load times, if route is not protected, check docs:
-  // https://vercel.com/docs/concepts/functions/edge-caching
-  // TODO
+  // TODO: Set edge function caching for faster load times, if route is not protected
   // if (odpt === '') res.setHeader('Cache-Control', apiConfig.cacheControlHeader)
 
   // Check whether the size is valid - must be one of 'large', 'medium', or 'small'
@@ -47,9 +45,6 @@ export default async function handler(req: NextRequest): Promise<Response> {
   // If message is empty, then the path is not protected.
   // Conversely, protected routes are not allowed to serve from cache.
   // TODO
-  // if (message !== '') {
-  //   res.setHeader('Cache-Control', 'no-cache')
-  // }
 
   const requestPath = encodePath(cleanPath)
   // Handle response from OneDrive API

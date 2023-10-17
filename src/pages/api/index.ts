@@ -172,13 +172,10 @@ export default async function handler(req: NextRequest): Promise<Response> {
     return new Response('OK')
   }
 
-  // If method is GET, then the API is a normal request to the OneDrive API for files or folders
-  const { path = '/', raw = false, next = '', sort = '' } = Object.fromEntries(req.nextUrl.searchParams)
+  // TODO: Set edge function caching for faster load times
 
-  // Set edge function caching for faster load times, check docs:
-  // https://vercel.com/docs/concepts/functions/edge-caching
-  // TODO
-  // res.setHeader('Cache-Control', apiConfig.cacheControlHeader)
+  // If method is GET, then the API is a normal request to the OneDrive API for files or folders
+  const { path = '/', next = '', sort = '' } = Object.fromEntries(req.nextUrl.searchParams)
 
   // Sometimes the path parameter is defaulted to '[...path]' which we need to handle
   if (path === '[...path]') {
@@ -209,40 +206,12 @@ export default async function handler(req: NextRequest): Promise<Response> {
   if (code !== 200) {
     return new Response(JSON.stringify({ error: message }), { status: code })
   }
-  // If message is empty, then the path is not protected.
-  // Conversely, protected routes are not allowed to serve from cache.
-  // TODO:
-  // if (message !== '') {
-  //   res.setHeader('Cache-Control', 'no-cache')
-  // }
 
   const requestPath = encodePath(cleanPath)
   // Handle response from OneDrive API
   const requestUrl = `${apiConfig.driveApi}/root${requestPath}`
   // Whether path is root, which requires some special treatment
   const isRoot = requestPath === ''
-
-  // Go for file raw download link, add CORS headers, and redirect to @microsoft.graph.downloadUrl
-  // (kept here for backwards compatibility, and cache headers will be reverted to no-cache)
-  if (raw) {
-    // TODO
-    // await runCorsMiddleware(req, res)
-    // res.setHeader('Cache-Control', 'no-cache')
-
-    const { data } = await axios.get(requestUrl, {
-      headers: { Authorization: `Bearer ${accessToken}` },
-      params: {
-        // OneDrive international version fails when only selecting the downloadUrl (what a stupid bug)
-        select: 'id,@microsoft.graph.downloadUrl',
-      },
-    })
-
-    if ('@microsoft.graph.downloadUrl' in data) {
-      return Response.redirect(data['@microsoft.graph.downloadUrl'])
-    } else {
-      return new Response(JSON.stringify({ error: 'No download url found.' }), { status: 404 })
-    }
-  }
 
   // Querying current path identity (file or folder) and follow up query childrens in folder
   try {

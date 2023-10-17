@@ -35,10 +35,7 @@ export default async function handler(req: NextRequest): Promise<Response> {
   // Query parameter from request
   const { q: searchQuery = '' } = Object.fromEntries(req.nextUrl.searchParams)
 
-  // Set edge function caching for faster load times, check docs:
-  // https://vercel.com/docs/concepts/functions/edge-caching
-  // TODO
-  // res.setHeader('Cache-Control', apiConfig.cacheControlHeader)
+  // TODO: Set edge function caching for faster load times
 
   if (typeof searchQuery === 'string') {
     // Construct Microsoft Graph Search API URL, and perform search only under the base directory
