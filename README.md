@@ -1,23 +1,3 @@
-Forked onedrive-vercel-index and renamed to onedrive-cf-index-ng
-
-Changes:
-- Migrate to Web Api to adapt to edge runtime (Use `path-browserify` and `redaxios`)
-- Use KV to replace Redis
-- Remove i18n (requires `fs` which is not compatible with Cloudflare Workers)
-- pnpm update & a few packages update
-- IT WORKS on Cloudflare Pages now!
-
-TODO:
-- Cache headers and some todos left in API code
-- Remove redundant configs 
-- Polish Webui and fix small problems
-- Dockerfile for local deploy
-- More tests
-
-Below is the original README
----
-
-
 <div align="center">
   <img src="./public/header.png" alt="onedrive-cf-index-ng" />
   <h3><a href="https://pan.lyc8503.site">onedrive-cf-index-ng</a></h3>
@@ -69,19 +49,19 @@ Live demo at [lyc8503's Fileshare](https://pan.lyc8503.site).
     <tr>
       <td>
         <a
-          href="https://drive.swo.moe/Lecture%20and%20Coursework%20CS%20(BIT)/2019%20-%20%E5%A4%A7%E4%B8%89%E4%B8%8B%20-%20%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E4%B8%8E%E8%AE%BE%E8%AE%A1/n1570.pdf"
+          href="https://pan.lyc8503.site/Demo/%F0%9F%93%84Documents"
           >👀 File preview</a
         >
       </td>
       <td>
         <a
-          href="https://drive.swo.moe/%F0%9F%8D%87%20Wallpaper"
+          href="https://pan.lyc8503.site/Demo/%F0%9F%96%BC%EF%B8%8FPictures"
           >💠  List / Grid layouts</a
         >
       </td>
       <td>
         <a
-          href="https://drive.swo.moe/%F0%9F%8D%A1%20Genshin%20PV/New%20version%20PV/TGA2021%E3%80%8A%E5%8E%9F%E7%A5%9E%E3%80%8B%E5%8F%82%E9%80%89%E8%A7%86%E9%A2%91.mp4"
+          href="https://pan.lyc8503.site/Demo/%F0%9F%98%8EAnother%20Private%20Folder%20Password%20123"
           >🎥 Video and audio</a
         >
       </td>
@@ -94,12 +74,12 @@ Live demo at [lyc8503's Fileshare](https://pan.lyc8503.site).
     <tr>
       <td>
         <a
-          href="https://drive.swo.moe/Lecture%20and%20Coursework%20CS%20(BIT)/2017%20-%20%E5%A4%A7%E4%BA%8C%E4%B8%8A%20-%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%20%E7%BB%AA%E8%AE%BA.pptx"
+          href="https://pan.lyc8503.site/Demo/%F0%9F%93%84Documents"
           >📄 Office preview</a
         >
       </td>
-      <td><a href="https://drive.swo.moe/%F0%9F%A5%9F%20Some%20test%20files/Articles">📝 README.md preview</a></td>
-      <td><a href="https://drive.swo.moe/%F0%9F%A5%9F%20Some%20test%20files/Imagenette">📑 Pagination</a></td>
+      <td><a href="https://pan.lyc8503.site/Demo/%F0%9F%93%84Documents">📝 README.md preview</a></td>
+      <td><a href="https://pan.lyc8503.site/Demo/%F0%9F%96%BC%EF%B8%8FPictures">📑 Pagination</a></td>
     </tr>
     <tr>
       <td>docx, pptx, xlsx, ...</td>
@@ -107,8 +87,8 @@ Live demo at [lyc8503's Fileshare](https://pan.lyc8503.site).
       <td>For folders with 200 or more items</td>
     </tr>
     <tr>
-      <td><a href="https://drive.swo.moe/%F0%9F%8C%9E%20Private%20folder">🔒 Protected folders</a></td>
-      <td><a href="https://drive.swo.moe/%F0%9F%8D%8A%20Weibo%20emotes/Source2">⏬ Multi-file download</a></td>
+      <td><a href="https://pan.lyc8503.site/Demo/%F0%9F%98%8EAnother%20Private%20Folder%20Password%20123">🔒 Protected folders</a></td>
+      <td><a href="https://pan.lyc8503.site/Demo">⏬ Multi-file download</a></td>
       <td>🔎 Native Search</td>
     </tr>
     <tr>
@@ -162,3 +142,11 @@ Yes! Completely free with no backend server what-so-ever.
   <img src="./public/footer.png" />
   <em>made with ❤️ by <a href="https://www.lyc8503.site">lyc8503</a> & <a href="https://spencerwoo.com">spencer woo</a></em>
 </div>
+
+## Some TODOs
+- Documentation
+- Local/Docker deployment support
+- Some TODOs left in the code
+- More tests
+
+
