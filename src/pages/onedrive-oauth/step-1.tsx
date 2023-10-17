@@ -27,7 +27,7 @@ export default function OAuthStep1() {
             </div>
             <h3 className="mb-4 text-center text-xl font-medium">{'Welcome to your new onedrive-cf-index-ng 🎉'}</h3>
 
-            <h3 className="mb-2 mt-4 text-lg font-medium">{'Step 1/3: Preparations'}</h3>
+            <h3 className="mb-2 mt-4 text-lg font-med ium">{'Step 1/3: Preparations'}</h3>
 
             <p className="py-1">
               Authorisation is required as no valid{' '}

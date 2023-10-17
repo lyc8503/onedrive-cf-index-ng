@@ -49,7 +49,7 @@ const MarkdownPreview: FC<{
         // eslint-disable-next-line @next/next/no-img-element
         <img
           alt={alt}
-          src={isUrlAbsolute(src as string) ? src : `/api/?path=${parentPath}/${src}&raw=true`}
+          src={isUrlAbsolute(src as string) ? src : `/api?path=${parentPath}/${src}&raw=true`}
           title={title}
           width={width}
           height={height}

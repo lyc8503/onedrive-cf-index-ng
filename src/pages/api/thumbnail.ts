@@ -1,7 +1,6 @@
 import type { OdThumbnail } from '../../types'
 
-import { posix as pathPosix } from 'path'
-
+import { posix as pathPosix } from 'path-browserify'
 import axios from 'redaxios'
 
 import { checkAuthRoute, encodePath, getAccessToken } from '.'

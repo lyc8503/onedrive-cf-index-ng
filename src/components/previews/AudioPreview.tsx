@@ -27,7 +27,7 @@ const AudioPreview: FC<{ file: OdFileObject }> = ({ file }) => {
   const [playerVolume, setPlayerVolume] = useState(1)
 
   // Render audio thumbnail, and also check for broken thumbnails
-  const thumbnail = `/api/thumbnail/?path=${asPath}&size=medium${hashedToken ? `&odpt=${hashedToken}` : ''}`
+  const thumbnail = `/api/thumbnail?path=${asPath}&size=medium${hashedToken ? `&odpt=${hashedToken}` : ''}`
   const [brokenThumbnail, setBrokenThumbnail] = useState(false)
 
   useEffect(() => {

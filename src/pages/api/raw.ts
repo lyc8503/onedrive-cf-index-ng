@@ -26,7 +26,7 @@ export default async function handler(req: NextRequest): Promise<Response> {
   const cleanPath = pathPosix.resolve('/', pathPosix.normalize(path))
 
   // Handle protected routes authentication
-  const odTokenHeader = (req.headers['od-protected-token'] as string) ?? odpt
+  const odTokenHeader = (req.headers.get('od-protected-token') as string) ?? odpt
 
   const { code, message } = await checkAuthRoute(cleanPath, accessToken, odTokenHeader)
   // Status code other than 200 means user has not authenticated yet

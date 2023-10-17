@@ -201,7 +201,7 @@ export default async function handler(req: NextRequest): Promise<Response> {
   }
 
   // Handle protected routes authentication
-  const { code, message } = await checkAuthRoute(cleanPath, accessToken, req.headers['od-protected-token'] as string)
+  const { code, message } = await checkAuthRoute(cleanPath, accessToken, req.headers.get('od-protected-token') as string)
   // Status code other than 200 means user has not authenticated yet
   if (code !== 200) {
     return new Response(JSON.stringify({ error: message }), { status: code })
