@@ -116,7 +116,7 @@ Live demo at [lyc8503's Fileshare](https://pan.lyc8503.site).
 Documentation is hosted at [GitHub Wiki](https://github.com/lyc8503/onedrive-cf-index-ng/wiki).
 
 - [How can I get started and deploy?](https://github.com/lyc8503/onedrive-cf-index-ng/wiki/Getting-Started)
-- [How can I configure ... ?](https://ovi.swo.moe/docs/custom-configs)
+- [How can I configure ... ?](https://github.com/lyc8503/onedrive-cf-index-ng/wiki/Configurations)
 - Where is feature ... ?
   - [Docs - Password protected folders](https://ovi.swo.moe/docs/features/protected-folders)
   - [Docs - Multi-file and folder download](https://ovi.swo.moe/docs/features/multi-file-folder-download)
