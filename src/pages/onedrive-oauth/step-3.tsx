@@ -42,27 +42,6 @@ export default function OAuthStep3({ accessToken, expiryTime, refreshToken, erro
       </div>
     )
 
-    // verify identity of the authenticated user with the Microsoft Graph API
-    const { data, status } = await getAuthPersonInfo(accessToken)
-    if (status !== 200) {
-      setButtonError(true)
-      setButtonContent(
-        <div>
-          <span>{'Error validating identify, restart'}</span> <FontAwesomeIcon icon="exclamation-circle" />
-        </div>
-      )
-      return
-    }
-    if (data.userPrincipalName !== siteConfig.userPrincipalName) {
-      setButtonError(true)
-      setButtonContent(
-        <div>
-          <span>{'Do not pretend to be the site owner'}</span> <FontAwesomeIcon icon="exclamation-circle" />
-        </div>
-      )
-      return
-    }
-
     await sendTokenToServer(accessToken, refreshToken, expiryTime)
       .then(() => {
         setButtonError(false)
@@ -234,6 +213,25 @@ export async function getServerSideProps({ query }) {
 
   const { expiryTime, accessToken, refreshToken } = response
 
+  // verify identity of the authenticated user with the Microsoft Graph API
+  const { data, status } = await getAuthPersonInfo(accessToken)
+  if (status !== 200) {
+    return {
+      props: {
+        error: "Non-200 response from Microsoft Graph API",
+        description: JSON.stringify(data)
+      },
+    }
+  }
+  if (data.userPrincipalName !== siteConfig.userPrincipalName) {
+    return {
+      props: {
+        error: "Do not pretend to be the owner!",
+        description: "Authenticated user: " + data.userPrincipalName + "\n" + "siteConfig.userPrincipalName: " + siteConfig.userPrincipalName + "\n" + "Please check your config!"
+      },
+    }
+  }
+  
   return {
     props: {
       error: null,
