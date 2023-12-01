@@ -1,34 +1,34 @@
-/**
- * This file contains the configuration for the API endpoints and tokens we use.
- *
- * - If you are a OneDrive International user, you would not have to change anything here.
- * - If you are not the admin of your OneDrive for Business account, you may need to define your own clientId/clientSecret,
- *   check documentation for more details.
- * - If you are using a E5 Subscription OneDrive for Business account, the direct links of your files are not the same here.
- *   In which case you would need to change directLinkRegex.
- */
-module.exports = {
-  // The clientId and clientSecret are used to authenticate the user with Microsoft Graph API using OAuth. You would
-  // not need to change anything here if you can authenticate with your personal Microsoft account with OneDrive International.
-  clientId: 'f23f9918-14a5-46f1-9f74-13e57273b8f3',
-  obfuscatedClientSecret: 'U2FsdGVkX1+KTcEqbSzjTc6JqT+Q4m7PE2Rck4gYUIJSsIc5FPh8SsewBIUGv0yz5/amN8Lgh2uMenN1x4WYLg==',
+/**fv
+* 该文件包含我们使用的API 端点和令牌的配置。
+*
+* - 如果您是 OneDrive International 用户，则需在此处进行任何更改。
+* - 如果您不是 OneDrive for Business 账户的管理员，您可能需要定义自己的 clientId/clientSecret，
+* 查看文档查看更多详细信息。
+* - 如果您使用的是 E5 订阅 OneDrive for Business 帐户，则您的文件的直接链接与此处不同。
+* 在这种情况下，您需要更改 directLinkRegex。
+*/
+模块。出口= {
+  // clientId 和 clientSecret 用于通过 Microsoft Graph API 使用 OAuth 对用户进行身份验证。
+  // 如果您可以使用 OneDrive International 的个人 Microsoft 帐户进行身份验证，则无需在此处进行任何更改。
+  clientId : '2b12079c-d875-4703-b3ef-62642aa3ce20' ,
+  obfuscatedClientSecret : 'U2FsdGVkX189eFM6Gvbl0WnLIrx1oiX8MVfEerJ2PxxSQtC+RqSzSOPbCqOvPTozmpirXohpl0SR+wlvRzXGvg==' ,
 
-  // The redirectUri is the URL that the user will be redirected to after they have authenticated with Microsoft Graph API.
-  // Likewise, you would not need to change redirectUri if you are using your personal Microsoft account with OneDrive International.
-  redirectUri: 'http://localhost',
+  // redirectUri 是用户通过 Microsoft Graph API 进行身份验证后将被重定向到的 URL。
+  // 同样，如果您使用 OneDrive International 的个人微软账户，则消耗更改redirectUri。
+  重定向Uri：'http://localhost' ,
 
-  // These are the URLs of the OneDrive API endpoints. You would not need to change anything here if you are using OneDrive International
-  // or E5 Subscription OneDrive for Business. You may need to change these if you are using OneDrive 世纪互联.
-  authApi: 'https://login.microsoftonline.com/common/oauth2/v2.0/token',
-  driveApi: 'https://graph.microsoft.com/v1.0/me/drive',
+  // 这些是 OneDrive API 端点的 URL。如果您使用的是 OneDrive International，则无需在此处进行任何更改
+  // 或 E5 订阅 OneDrive for Business。如果您使用 OneDrive 世纪互联，您可能需要更改这些。
+  authApi：'https://login.microsoftonline.com/common/oauth2/v2.0/token'，
+  DriveApi：'https://graph.microsoft.com/v1.0/me/drive'，
 
-  // The scope we require are listed here, in most cases you would not need to change this as well.
-  scope: 'user.read files.read.all offline_access',
+  // 这里列出了我们需要的范围，在大多数情况下您也不需要更改它。
+  范围：'user.read files.read.alloffline_access'，
 
-  // Cache-Control header, check Vercel documentation for more details. The default settings imply:
-  // - max-age=0: no cache for your browser
-  // - s-maxage=0: cache is fresh for 60 seconds on the edge, after which it becomes stale
-  // - stale-while-revalidate: allow serving stale content while revalidating on the edge
+  // Cache-Control 标头，请查看 Vercel 文档以获取更多详细信息。默认设置含义：
+  // - max-age=0: 您的浏览器没有服务器
+  // - s-maxage=0：服务器在边缘保持刷新状态60秒，之后就会稀疏陈旧
+  // - stale-while-revalidate：允许在边缘重新验证时提供陈旧内容
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
-  cacheControlHeader: 'max-age=0, s-maxage=60, stale-while-revalidate',
+  服务器控制头：
 }
