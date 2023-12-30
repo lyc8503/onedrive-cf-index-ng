@@ -1,0 +1,24 @@
+name: Sync Upstream
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 20 * * 1"
+
+jobs:
+  check:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Sync Upstream
+        run: |
+          git config --global user.email "kevinnitro@duck.com"
+          git config --global user.name "KevinNitroG"
+          git remote add upstream https://https://github.com/lyc8503/onedrive-cf-index-ng.git
+          git fetch upstream
+          git merge upstream/main
+          git push origin main
