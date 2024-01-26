@@ -154,19 +154,17 @@ export default function OAuthStep3({ accessToken, expiryTime, refreshToken, erro
                 </p>
                 <p className="py-1">
                   {'Final step, click the button below to store these tokens persistently before they expire ' +
-                    `after ${Math.floor(expiryTimeLeft / 60)} minutes ${
-                      expiryTimeLeft - Math.floor(expiryTimeLeft / 60) * 60
+                    `after ${Math.floor(expiryTimeLeft / 60)} minutes ${expiryTimeLeft - Math.floor(expiryTimeLeft / 60) * 60
                     } seconds. ` +
                     "Don't worry, after storing them, onedrive-cf-index-ng will take care of token refreshes and updates after your site goes live."}
                 </p>
 
                 <div className="mb-2 mt-6 text-right">
                   <button
-                    className={`rounded-lg bg-gradient-to-br px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:ring-4 ${
-                      buttonError
-                        ? 'from-red-500 to-orange-400 focus:ring-red-200 dark:focus:ring-red-800'
-                        : 'from-green-500 to-teal-300 focus:ring-green-200 dark:focus:ring-green-800'
-                    }`}
+                    className={`rounded-lg bg-gradient-to-br px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:ring-4 ${buttonError
+                      ? 'from-red-500 to-orange-400 focus:ring-red-200 dark:focus:ring-red-800'
+                      : 'from-green-500 to-teal-300 focus:ring-green-200 dark:focus:ring-green-800'
+                      }`}
                     onClick={sendAuthTokensToServer}
                   >
                     {buttonContent}
@@ -227,11 +225,11 @@ export async function getServerSideProps({ query }) {
     return {
       props: {
         error: "Do not pretend to be the owner!",
-        description: "Authenticated user: " + data.userPrincipalName + "\n" + "siteConfig.userPrincipalName: " + siteConfig.userPrincipalName + "\n" + "Please check your config!"
+        description: "Authenticated user: " + data.userPrincipalName + "\n" + "UserPrincipalName in your config should match the authenticated user here!"
       },
     }
   }
-  
+
   return {
     props: {
       error: null,

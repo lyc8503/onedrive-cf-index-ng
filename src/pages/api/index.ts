@@ -4,7 +4,7 @@ import axios from 'redaxios'
 
 import apiConfig from '../../../config/api.config'
 import siteConfig from '../../../config/site.config'
-import { revealObfuscatedToken } from '../../utils/oAuthHandler'
+import { getAuthPersonInfo, revealObfuscatedToken } from '../../utils/oAuthHandler'
 import { compareHashedToken } from '../../utils/protectedRouteHandler'
 import { getOdAuthTokens, storeOdAuthTokens } from '../../utils/odAuthTokenStore'
 import { NextRequest, NextResponse } from 'next/server'
@@ -160,12 +160,20 @@ export async function checkAuthRoute(
 export default async function handler(req: NextRequest): Promise<Response> {
   // If method is POST, then the API is called by the client to store acquired tokens
   if (req.method === 'POST') {
-    const { obfuscatedAccessToken, accessTokenExpiry, obfuscatedRefreshToken } = await req.json()
-    const accessToken = revealObfuscatedToken(obfuscatedAccessToken)
-    const refreshToken = revealObfuscatedToken(obfuscatedRefreshToken)
+    const { accessToken, accessTokenExpiry, refreshToken } = await req.json()
 
     if (typeof accessToken !== 'string' || typeof refreshToken !== 'string') {
       return new Response('Invalid request body', { status: 400 })
+    }
+
+    // verify identity of the authenticated user with the Microsoft Graph API
+    const { data, status } = await getAuthPersonInfo(accessToken)
+    if (status !== 200) {
+      return new Response("Non-200 response from Microsoft Graph API", { status: 500 })
+    }
+
+    if (data.userPrincipalName !== siteConfig.userPrincipalName) {
+      return new Response("Do not pretend to be the owner!", { status: 403 })
     }
 
     await storeOdAuthTokens({ accessToken, accessTokenExpiry, refreshToken })
