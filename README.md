@@ -11,6 +11,7 @@
 
 ## What's different
 - Now it can be deployed on Cloudflare Pages for free!
+- Also support [Docker Deployment](https://github.com/lyc8503/onedrive-cf-index-ng/wiki/Docker-Deployment) now!
 - No more dependency on Upstash / 3rd-party service
 - Maybe some future maintenance or improvements from me ([@lyc8503](https://github.com/lyc8503))
 
@@ -138,7 +139,7 @@ Yes! Completely free with no backend server what-so-ever.
 
 ## Some TODOs
 - Documentation
-- Local/Docker deployment support
+- [ x ] Local/Docker deployment support
 - Some TODOs left in the code
 - More tests
 
