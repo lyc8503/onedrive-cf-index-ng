@@ -138,10 +138,10 @@ Yes! Completely free with no backend server what-so-ever.
 [MIT](LICENSE)
 
 ## Some TODOs
-- Documentation
-- [ x ] Local/Docker deployment support
-- Some TODOs left in the code
-- More tests
+- [ ] Documentation migration
+- [x] Local/Docker deployment support
+- [ ] Some TODOs left in the code
+- [x] More tests
 
 <div align="center">
   <img src="./public/footer.png" />
