@@ -16,6 +16,12 @@ export default async function handler(req: NextRequest): Promise<Response> {
   // TODO: Set edge function caching for faster load times
 
   if (typeof id === 'string') {
+    const idPattern = /^[a-zA-Z0-9]+$/
+    if (!idPattern.test(id)) {
+      // ID contains characters other than letters and numbers
+      return new Response(JSON.stringify({ error: 'Invalid driveItem ID.' }), { status: 400 })
+    }
+
     const itemApi = `${apiConfig.driveApi}/items/${id}`
     try {
       const { data } = await axios.get(itemApi, {
