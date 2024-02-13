@@ -7,14 +7,14 @@ module.exports = {
   // Make sure this is exactly the same as the email address you use to sign into your Microsoft account.
   // You can also put this in your worker's environment variable if you worry about
   // your email being exposed in public.
-  userPrincipalName: process.env.USER_PRINCIPLE_NAME || 'e5_onedrive@lyctest123.onmicrosoft.com',
+  userPrincipalName: process.env.USER_PRINCIPLE_NAME || 'xtaibi@sxu.ac.cn',
 
   // [OPTIONAL] This is the website icon to the left of the title inside the navigation bar. It should be placed under the
   // /public directory of your GitHub project (not your OneDrive folder!), and referenced here by its relative path to /public.
   icon: '/icons/128.png',
 
   // The name of your website. Present alongside your icon.
-  title: "lyc8503's OneDrive",
+  title: "DJdoge's OneDrive",
 
   // The folder that you are to share publicly with onedrive-cf-index-ng. Use '/' if you want to share your root folder.
   baseDirectory: '/',
@@ -50,7 +50,7 @@ module.exports = {
   links: [
     {
       name: 'GitHub',
-      link: 'https://github.com/lyc8503',
+      link: 'https://github.com/Ivisibox',
     },
   ],
 
