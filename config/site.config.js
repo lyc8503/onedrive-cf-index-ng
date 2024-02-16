@@ -7,7 +7,7 @@ module.exports = {
   // Make sure this is exactly the same as the email address you use to sign into your Microsoft account.
   // You can also put this in your worker's environment variable if you worry about
   // your email being exposed in public.
-  userPrincipalName: process.env.USER_PRINCIPLE_NAME || 'e5_onedrive@lyctest123.onmicrosoft.com',
+  userPrincipalName: process.env.USER_PRINCIPLE_NAME || 'me@lyc8503.site',
 
   // [OPTIONAL] This is the website icon to the left of the title inside the navigation bar. It should be placed under the
   // /public directory of your GitHub project (not your OneDrive folder!), and referenced here by its relative path to /public.
