@@ -50,7 +50,7 @@ module.exports = {
   links: [
     {
       name: 'Telegram',
-      link: 'https://t.me.shutterapp',
+      link: 'https://t.me/shutterapp',
     },
   ],
 
