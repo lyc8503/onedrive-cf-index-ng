@@ -1,6 +1,6 @@
 <div align="center">
   <img src="./public/header.png" alt="onedrive-cf-index-ng" />
-  <h3><a href="https://pan.lyc8503.site">onedrive-cf-index-ng</a></h3>
+  <h3><a href="https://pan.lyc8503.net">onedrive-cf-index-ng</a></h3>
   <p><em>OneDrive public directory listing forked from <a href="https://github.com/spencerwooo/onedrive-vercel-index">onedrive-vercel-index</a>, powered by Cloudflare and Next.js</em></p>
 
   <img src="https://img.shields.io/badge/OneDrive-2C68C3?style=flat&logo=microsoft-onedrive&logoColor=white" alt="OneDrive" />
@@ -37,7 +37,7 @@ Showcase, share, preview, and download files inside *your* OneDrive with onedriv
 
 ## Demo
 
-Live demo at [lyc8503's Fileshare](https://pan.lyc8503.site).
+Live demo at [lyc8503's Fileshare](https://pan.lyc8503.net).
 
 ![demo](./public/demo.png)
 
@@ -48,19 +48,19 @@ Live demo at [lyc8503's Fileshare](https://pan.lyc8503.site).
     <tr>
       <td>
         <a
-          href="https://pan.lyc8503.site/Demo/%F0%9F%93%84Documents"
+          href="https://pan.lyc8503.net/Demo/%F0%9F%93%84Documents"
           >👀 File preview</a
         >
       </td>
       <td>
         <a
-          href="https://pan.lyc8503.site/Demo/%F0%9F%96%BC%EF%B8%8FPictures"
+          href="https://pan.lyc8503.net/Demo/%F0%9F%96%BC%EF%B8%8FPictures"
           >💠  List / Grid layouts</a
         >
       </td>
       <td>
         <a
-          href="https://pan.lyc8503.site/Demo/%F0%9F%98%8EAnother%20Private%20Folder%20Password%20123"
+          href="https://pan.lyc8503.net/Demo/%F0%9F%98%8EAnother%20Private%20Folder%20Password%20123"
           >🎥 Video and audio</a
         >
       </td>
@@ -73,12 +73,12 @@ Live demo at [lyc8503's Fileshare](https://pan.lyc8503.site).
     <tr>
       <td>
         <a
-          href="https://pan.lyc8503.site/Demo/%F0%9F%93%84Documents"
+          href="https://pan.lyc8503.net/Demo/%F0%9F%93%84Documents"
           >📄 Office preview</a
         >
       </td>
-      <td><a href="https://pan.lyc8503.site/Demo/%F0%9F%93%84Documents">📝 README.md preview</a></td>
-      <td><a href="https://pan.lyc8503.site/Demo/%F0%9F%96%BC%EF%B8%8FPictures">📑 Pagination</a></td>
+      <td><a href="https://pan.lyc8503.net/Demo/%F0%9F%93%84Documents">📝 README.md preview</a></td>
+      <td><a href="https://pan.lyc8503.net/Demo/%F0%9F%96%BC%EF%B8%8FPictures">📑 Pagination</a></td>
     </tr>
     <tr>
       <td>docx, pptx, xlsx, ...</td>
@@ -86,8 +86,8 @@ Live demo at [lyc8503's Fileshare](https://pan.lyc8503.site).
       <td>For folders with 200 or more items</td>
     </tr>
     <tr>
-      <td><a href="https://pan.lyc8503.site/Demo/%F0%9F%98%8EAnother%20Private%20Folder%20Password%20123">🔒 Protected folders</a></td>
-      <td><a href="https://pan.lyc8503.site/Demo">⏬ Multi-file download</a></td>
+      <td><a href="https://pan.lyc8503.net/Demo/%F0%9F%98%8EAnother%20Private%20Folder%20Password%20123">🔒 Protected folders</a></td>
+      <td><a href="https://pan.lyc8503.net/Demo">⏬ Multi-file download</a></td>
       <td>🔎 Native Search</td>
     </tr>
     <tr>
@@ -145,7 +145,7 @@ Yes! Completely free with no backend server what-so-ever.
 
 <div align="center">
   <img src="./public/footer.png" />
-  <em>made with ❤️ by <a href="https://www.lyc8503.site">lyc8503</a> & <a href="https://spencerwoo.com">spencer woo</a></em>
+  <em>made with ❤️ by <a href="https://lyc8503.net">lyc8503</a> & <a href="https://spencerwoo.com">spencer woo</a></em>
 </div>
 
 
