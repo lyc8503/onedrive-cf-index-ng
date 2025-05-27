@@ -10,7 +10,7 @@
     "format": "prettier 'src/**/*.{js,ts,jsx,tsx}' --write"
   },
   "dependencies": {
-    "@cloudflare/workers-types": "^4.20231002.0",
+    "@cloudflare/workers-types": "^4.20250408.0",
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-brands-svg-icons": "^6.2.1",
     "@fortawesome/free-regular-svg-icons": "^6.2.1",
@@ -27,7 +27,7 @@
     "emoji-regex": "^10.2.1",
     "ioredis": "^5.3.0",
     "jszip": "^3.10.1",
-    "mpegts.js": "^1.7.2",
+    "mpegts.js": "1.7.2",
     "next": "^13.1.6",
     "nextjs-progressbar": "^0.0.16",
     "path-browserify": "^1.0.1",
@@ -53,7 +53,7 @@
     "swr": "^2.0.3",
     "use-clipboard-copy": "^0.2.0",
     "use-constant": "^1.1.1",
-    "wrangler": "^3.13.1"
+    "wrangler": "^3.105.0"
   },
   "devDependencies": {
     "vercel": "39.1.1",
