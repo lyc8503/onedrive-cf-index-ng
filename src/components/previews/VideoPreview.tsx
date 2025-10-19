@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 
 import axios from 'axios'
 import toast from 'react-hot-toast'
-import Plyr from 'plyr-react'
+import dynamic from 'next/dynamic'
 import { useAsync } from 'react-async-hook'
 import { useClipboard } from 'use-clipboard-copy'
 
@@ -20,6 +20,12 @@ import Loading from '../Loading'
 import CustomEmbedLinkMenu from '../CustomEmbedLinkMenu'
 
 import 'plyr-react/plyr.css'
+
+// Dynamic import to avoid ESM issues in Cloudflare
+const Plyr = dynamic(() => import('plyr-react'), {
+  ssr: false,
+  loading: () => <Loading loadingText="Loading video player..." />
+})
 
 const VideoPlayer: FC<{
   videoName: string
@@ -62,7 +68,7 @@ const VideoPlayer: FC<{
     poster: thumbnail,
     tracks: [{ kind: 'captions', label: videoName, src: '', default: true }],
   }
-  const plyrOptions: Plyr.Options = {
+  const plyrOptions = {
     ratio: `${width ?? 16}:${height ?? 9}`,
     fullscreen: { iosNative: true },
   }
@@ -70,7 +76,7 @@ const VideoPlayer: FC<{
     // If the video is not in flv format, we can use the native plyr and add sources directly with the video URL
     plyrSource['sources'] = [{ src: videoUrl }]
   }
-  return <Plyr id="plyr" source={plyrSource as Plyr.SourceInfo} options={plyrOptions} />
+  return <Plyr id="plyr" source={plyrSource as any} options={plyrOptions as any} />
 }
 
 const VideoPreview: FC<{ file: OdFileObject }> = ({ file }) => {
