@@ -250,12 +250,33 @@ export default async function handler(req: NextRequest): Promise<Response> {
 
       // Return paging token if specified
       if (nextPage) {
-        return NextResponse.json({ folder: folderData, next: nextPage })
+        return NextResponse.json(
+          { folder: folderData, next: nextPage },
+          {
+            headers: {
+              'Cache-Control': apiConfig.cacheControlHeader,
+            },
+          }
+        )
       } else {
-        return NextResponse.json({ folder: folderData })
+        return NextResponse.json(
+          { folder: folderData },
+          {
+            headers: {
+              'Cache-Control': apiConfig.cacheControlHeader,
+            },
+          }
+        )
       }
     }
-    return NextResponse.json({ file: identityData })
+    return NextResponse.json(
+      { file: identityData },
+      {
+        headers: {
+          'Cache-Control': apiConfig.cacheControlHeader,
+        },
+      }
+    )
   } catch (error: any) {
     return new Response(JSON.stringify({ error: error?.response?.data ?? 'Internal server error.' }), {
       status: error?.response?.code ?? 500,

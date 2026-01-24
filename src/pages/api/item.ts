@@ -30,7 +30,11 @@ export default async function handler(req: NextRequest): Promise<Response> {
           select: 'id,name,parentReference',
         },
       })
-      return NextResponse.json(data)
+      return NextResponse.json(data, {
+        headers: {
+          'Cache-Control': apiConfig.cacheControlHeader,
+        },
+      })
     } catch (error: any) {
       return new Response(JSON.stringify({ error: error?.response?.data ?? 'Internal server error.' }), { status: error?.response?.status ?? 500 })
     }
