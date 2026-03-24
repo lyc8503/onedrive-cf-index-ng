@@ -58,4 +58,12 @@ module.exports = {
   // https://day.js.org/docs/en/display/format for detailed specification. The default value is ISO 8601 full datetime
   // without timezone and replacing T with space.
   datetimeFormat: 'YYYY-MM-DD HH:mm:ss',
+
+  // [OPTIONAL] OPDS catalog support for ebook readers.
+  opds: {
+    enabled: true,
+    title: "lyc8503's OneDrive",
+    description: 'OPDS catalog powered by onedrive-cf-index-ng.',
+    fileExtensions: ['.epub', '.pdf', '.mobi', '.azw3', '.azw', '.cbz', '.cbr'],
+  },
 }
