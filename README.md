@@ -130,7 +130,7 @@ For certificate mode, provide PEM content in `OAUTH_CLIENT_CERTIFICATE` that inc
 - a PKCS#8 private key block (`-----BEGIN PRIVATE KEY-----`)
 - a certificate block (`-----BEGIN CERTIFICATE-----`)
 
-Recommended certificate/key algorithm: **ECC P-384** (ES384).
+Recommended certificate/key algorithm: **ECC P-256** (ES256).
 
 - [How can I get started and deploy?](https://github.com/lyc8503/onedrive-cf-index-ng/wiki/Getting-Started)
 - [How can I configure ... ?](https://github.com/lyc8503/onedrive-cf-index-ng/wiki/Configurations)

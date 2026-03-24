@@ -60,7 +60,7 @@ export async function buildClientAssertionJwt(tokenEndpoint: string): Promise<st
   const privateKey = await crypto.subtle.importKey(
     'pkcs8',
     base64ToBytes(privateKeyMatch[0].replace(/-----[^-]+-----/g, '')) as any,
-    { name: 'ECDSA', namedCurve: 'P-384' },
+    { name: 'ECDSA', namedCurve: 'P-256' },
     false,
     ['sign']
   )
@@ -69,7 +69,7 @@ export async function buildClientAssertionJwt(tokenEndpoint: string): Promise<st
   const certSha1 = await crypto.subtle.digest('SHA-1', certDer as any)
   const certSha256 = await crypto.subtle.digest('SHA-256', certDer as any)
   const header = {
-    alg: 'ES384',
+    alg: 'ES256',
     typ: 'JWT',
     x5t: bytesToBase64Url(new Uint8Array(certSha1)),
     'x5t#S256': bytesToBase64Url(new Uint8Array(certSha256)),
@@ -90,7 +90,7 @@ export async function buildClientAssertionJwt(tokenEndpoint: string): Promise<st
   const encodedPayload = stringToBase64Url(JSON.stringify(payload))
   const signingInput = `${encodedHeader}.${encodedPayload}`
   const signature = await crypto.subtle.sign(
-    { name: 'ECDSA', hash: 'SHA-384' },
+    { name: 'ECDSA', hash: 'SHA-256' },
     privateKey,
     new TextEncoder().encode(signingInput) as any
   )
