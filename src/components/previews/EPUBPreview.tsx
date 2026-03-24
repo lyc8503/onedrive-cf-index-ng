@@ -20,7 +20,7 @@ const EPUBPreview: FC<{ file: OdFileObject }> = ({ file }) => {
     setEpubContainerWidth(epubContainer.current ? epubContainer.current.offsetWidth : 400)
   }, [])
 
-  const [location, setLocation] = useState<string>()
+  const [location, setLocation] = useState<string | null>(null)
   const onLocationChange = (cfiStr: string) => setLocation(cfiStr)
 
   // Fix for not valid epub files according to
