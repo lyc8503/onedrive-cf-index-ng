@@ -4,7 +4,7 @@ import axios from 'redaxios'
 
 import apiConfig from '../../../config/api.config'
 import siteConfig from '../../../config/site.config'
-import { getAuthPersonInfo, revealObfuscatedToken } from '../../utils/oAuthHandler'
+import { appendOAuthClientAuthentication, getAuthPersonInfo } from '../../utils/oAuthHandler'
 import { compareHashedToken } from '../../utils/protectedRouteHandler'
 import { getOdAuthTokens, storeOdAuthTokens } from '../../utils/odAuthTokenStore'
 import { NextRequest, NextResponse } from 'next/server'
@@ -12,7 +12,6 @@ import { NextRequest, NextResponse } from 'next/server'
 export const runtime = 'edge'
 
 const basePath = pathPosix.resolve('/', siteConfig.baseDirectory)
-const clientSecret = revealObfuscatedToken(apiConfig.obfuscatedClientSecret)
 
 /**
  * Encode the path of the file relative to the base directory
@@ -53,9 +52,9 @@ export async function getAccessToken(): Promise<string> {
   const body = new URLSearchParams()
   body.append('client_id', apiConfig.clientId)
   body.append('redirect_uri', apiConfig.redirectUri)
-  body.append('client_secret', clientSecret)
   body.append('refresh_token', refreshToken)
   body.append('grant_type', 'refresh_token')
+  await appendOAuthClientAuthentication(body, apiConfig.authApi)
 
   const resp = await axios.post(apiConfig.authApi, body, {
     headers: {

@@ -116,6 +116,22 @@ Live demo at [lyc8503's Fileshare](https://pan.lyc8503.net).
 
 Documentation is hosted at [GitHub Wiki](https://github.com/lyc8503/onedrive-cf-index-ng/wiki).
 
+### OAuth client authentication
+
+This project supports two client authentication methods for Microsoft OAuth token requests:
+
+- `OAUTH_CLIENT_SECRET`: client secret (existing behavior)
+- `OAUTH_CLIENT_CERTIFICATE`: certificate-based client assertion (JWT)
+
+If both are configured, `OAUTH_CLIENT_CERTIFICATE` is preferred.
+
+For certificate mode, provide PEM content in `OAUTH_CLIENT_CERTIFICATE` that includes:
+
+- a PKCS#8 private key block (`-----BEGIN PRIVATE KEY-----`)
+- a certificate block (`-----BEGIN CERTIFICATE-----`)
+
+Recommended certificate/key algorithm: **ECC P-384** (ES384).
+
 - [How can I get started and deploy?](https://github.com/lyc8503/onedrive-cf-index-ng/wiki/Getting-Started)
 - [How can I configure ... ?](https://github.com/lyc8503/onedrive-cf-index-ng/wiki/Configurations)
 - Where is feature ... ?
@@ -147,5 +163,4 @@ Yes! Completely free with no backend server what-so-ever.
   <img src="./public/footer.png" />
   <em>made with ❤️ by <a href="https://lyc8503.net">lyc8503</a> & <a href="https://spencerwoo.com">spencer woo</a></em>
 </div>
-
 
