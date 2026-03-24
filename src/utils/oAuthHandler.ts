@@ -81,7 +81,7 @@ export async function buildClientAssertionJwt(tokenEndpoint: string): Promise<st
     iss: apiConfig.clientId,
     sub: apiConfig.clientId,
     jti: crypto.randomUUID(),
-    nbf: now,
+    nbf: now - 10,
     iat: now,
     exp: now + 600,
   }
