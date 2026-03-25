@@ -1,4 +1,4 @@
-FROM node:20-bullseye-slim AS build
+FROM node:24-bullseye-slim AS build
 
 RUN npm install -g pnpm
 
@@ -8,11 +8,11 @@ WORKDIR /src
 RUN pnpm install
 RUN npx @cloudflare/next-on-pages
 
-FROM node:20-bullseye-slim AS runtime
+FROM node:24-bullseye-slim AS runtime
 
 COPY --from=build /src/.vercel /app/.vercel
 WORKDIR /app
-RUN npm install wrangler@3.105.0
+RUN npm install wrangler@4.76.0
 RUN apt update && apt -y install ca-certificates && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 8788

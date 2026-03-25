@@ -1,5 +1,6 @@
 import { FC, CSSProperties, ReactNode } from 'react'
 import ReactMarkdown from 'react-markdown'
+import type { Components } from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
@@ -30,26 +31,13 @@ const MarkdownPreview: FC<{
   // Custom renderer:
   const customRenderer = {
     // img: to render images in markdown with relative file paths
-    img: ({
-      alt,
-      src,
-      title,
-      width,
-      height,
-      style,
-    }: {
-      alt?: string
-      src?: string
-      title?: string
-      width?: string | number
-      height?: string | number
-      style?: CSSProperties
-    }) => {
+    img: ({ alt, src, title, width, height, style }: { [key: string]: any }) => {
+      const imgSrc = typeof src === 'string' ? src : ''
       return (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           alt={alt}
-          src={isUrlAbsolute(src as string) ? src : `/api?path=${parentPath}/${src}&raw=true`}
+          src={isUrlAbsolute(imgSrc) ? imgSrc : `/api?path=${parentPath}/${imgSrc}&raw=true`}
           title={title}
           width={width}
           height={height}
@@ -58,16 +46,8 @@ const MarkdownPreview: FC<{
       )
     },
     // code: to render code blocks with react-syntax-highlighter
-    code({
-      className,
-      children,
-      inline,
-      ...props
-    }: {
-      className?: string | undefined
-      children: ReactNode
-      inline?: boolean
-    }) {
+    code({ className, children, ...props }: { className?: string | undefined; children?: ReactNode }) {
+      const inline = !className?.includes('language-')
       if (inline) {
         return (
           <code className={className} {...props}>
@@ -83,7 +63,7 @@ const MarkdownPreview: FC<{
         </SyntaxHighlighter>
       )
     },
-  }
+  } satisfies Components
 
   if (error) {
     return (
