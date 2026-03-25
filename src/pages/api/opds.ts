@@ -282,6 +282,7 @@ export default async function handler(req: NextRequest): Promise<Response> {
 
     return new Response(feed, { status: 200, headers: responseHeaders })
   } catch (error: any) {
+    responseHeaders['Content-Type'] = 'application/json;charset=utf-8'
     return new Response(JSON.stringify({ error: error?.response?.data ?? 'Internal server error.' }), {
       status: error?.response?.status ?? 500,
       headers: responseHeaders,

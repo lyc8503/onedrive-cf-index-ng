@@ -60,8 +60,9 @@ module.exports = {
   datetimeFormat: 'YYYY-MM-DD HH:mm:ss',
 
   // [OPTIONAL] OPDS catalog support for ebook readers.
+  // Note: This BYPASSES password protection for specific file types
   opds: {
-    enabled: true,
+    enabled: false,
     title: "lyc8503's OneDrive",
     description: 'OPDS catalog powered by onedrive-cf-index-ng.',
     fileExtensions: ['.epub', '.pdf', '.mobi', '.azw3', '.azw', '.cbz', '.cbr'],
