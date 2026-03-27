@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../../tailwind.config.js";
 
 @layer utilities {
   /* Chrome, Safari and Opera */
@@ -15,16 +14,28 @@
 }
 
 .react-pdf__Page__canvas {
-  @apply mx-auto border border-gray-300/40 shadow;
+  margin-left: auto;
+  margin-right: auto;
+  border-width: 1px;
+  border-color: rgb(212 212 216 / 0.4);
+  box-shadow:
+    0 1px 3px 0 rgb(0 0 0 / 0.1),
+    0 1px 2px -1px rgb(0 0 0 / 0.1);
 }
 
 .markdown-body ul {
-  @apply list-disc;
+  list-style-type: disc;
 }
 .markdown-body ol {
-  @apply list-decimal;
+  list-style-type: decimal;
 }
 pre[class*='language-'],
 code[class*='language-'] {
-  @apply font-mono !important;
+  font-family:
+    'SFMono-Regular',
+    Consolas,
+    'Liberation Mono',
+    Menlo,
+    Courier,
+    monospace;
 }

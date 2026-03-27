@@ -7,7 +7,7 @@ import useConstant from 'use-constant'
 
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Dialog, Transition } from '@headlessui/react'
+import { Dialog, DialogBackdrop, Transition } from '@headlessui/react'
 
 import type { OdDriveItem, OdSearchResult } from '../types'
 import { LoadingIcon } from './Loading'
@@ -189,7 +189,7 @@ export default function SearchModal({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0 bg-white/80 dark:bg-gray-800/80" />
+            <DialogBackdrop className="fixed inset-0 bg-white/80 dark:bg-gray-800/80" />
           </Transition.Child>
 
           <Transition.Child

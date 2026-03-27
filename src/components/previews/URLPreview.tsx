@@ -53,7 +53,7 @@ const TextPreview = ({ file }) => {
             btnColor="blue"
             btnText={'Open URL'}
             btnIcon="external-link-alt"
-            btnTitle={`Open URL ${' ' + parseDotUrl(content) ?? ''}`}
+            btnTitle={`Open URL ${parseDotUrl(content) ? ` ${parseDotUrl(content)}` : ''}`}
           />
         </div>
       </DownloadBtnContainer>

@@ -22,7 +22,7 @@ import CustomEmbedLinkMenu from '../CustomEmbedLinkMenu'
 import 'plyr-react/plyr.css'
 
 // Dynamic import to avoid ESM issues in Cloudflare
-const Plyr = dynamic(() => import('plyr-react'), {
+const Plyr = dynamic(() => import('plyr-react').then(mod => mod.Plyr), {
   ssr: false,
   loading: () => <Loading loadingText="Loading video player..." />
 })
